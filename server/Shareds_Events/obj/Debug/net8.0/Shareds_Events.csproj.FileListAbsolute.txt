@@ -1,0 +1,11 @@
+C:\Users\Hiiii\Downloads\ShortenURL\server\Shareds_Events\bin\Debug\net8.0\Shareds_Events.deps.json
+C:\Users\Hiiii\Downloads\ShortenURL\server\Shareds_Events\bin\Debug\net8.0\Shareds_Events.dll
+C:\Users\Hiiii\Downloads\ShortenURL\server\Shareds_Events\bin\Debug\net8.0\Shareds_Events.pdb
+C:\Users\Hiiii\Downloads\ShortenURL\server\Shareds_Events\obj\Debug\net8.0\Shareds_Events.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Hiiii\Downloads\ShortenURL\server\Shareds_Events\obj\Debug\net8.0\Shareds_Events.AssemblyInfoInputs.cache
+C:\Users\Hiiii\Downloads\ShortenURL\server\Shareds_Events\obj\Debug\net8.0\Shareds_Events.AssemblyInfo.cs
+C:\Users\Hiiii\Downloads\ShortenURL\server\Shareds_Events\obj\Debug\net8.0\Shareds_Events.csproj.CoreCompileInputs.cache
+C:\Users\Hiiii\Downloads\ShortenURL\server\Shareds_Events\obj\Debug\net8.0\Shareds_Events.dll
+C:\Users\Hiiii\Downloads\ShortenURL\server\Shareds_Events\obj\Debug\net8.0\refint\Shareds_Events.dll
+C:\Users\Hiiii\Downloads\ShortenURL\server\Shareds_Events\obj\Debug\net8.0\Shareds_Events.pdb
+C:\Users\Hiiii\Downloads\ShortenURL\server\Shareds_Events\obj\Debug\net8.0\ref\Shareds_Events.dll

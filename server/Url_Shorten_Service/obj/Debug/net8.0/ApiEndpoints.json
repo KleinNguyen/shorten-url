@@ -1,0 +1,34 @@
+[
+  {
+    "ContainingType": "Url_Shorten_Service.Controllers.ShortenController",
+    "Method": "SendShortUrl",
+    "RelativePath": "api/Shorten",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "Url_Shorten_Service.DTOs.ShortenDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Url_Shorten_Service.Controllers.ShortenController",
+    "Method": "RedirectToOriginal",
+    "RelativePath": "api/Shorten/{code}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "code",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  }
+]

@@ -1,0 +1,88 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36202.13
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Authentication_Service", "server\Authentication_Service\Authentication_Service.csproj", "{97DD4E96-BB2F-45DF-96F3-12E2A5FF1146}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Url_Shorten_Service", "server\Url_Shorten_Service\Url_Shorten_Service.csproj", "{7D358172-2F94-4ADF-96CD-F7DBDA430057}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Url_Crud_Service", "server\Url_Crud_Service\Url_Crud_Service.csproj", "{59407CAC-A302-4A10-B113-3547492AE154}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "server", "server", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiGateway", "server\ApiGateway\ApiGateway.csproj", "{958DE446-152A-4C13-BA19-D02F4DFA9ACC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shareds_Events", "server\Shareds_Events\Shareds_Events.csproj", "{8A9A3E8F-925A-AA24-567F-F9F866418BDE}"
+EndProject
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "client", "client\", "{F03FED76-20DB-B30E-51FF-188119B1BFB7}"
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.8"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_58127"
+		Debug.AspNetCompiler.PhysicalPath = "client\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_58127\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/localhost_58127"
+		Release.AspNetCompiler.PhysicalPath = "client\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_58127\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "58127"
+		SlnRelativePath = "client\"
+	EndProjectSection
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{81DDED9D-158B-E303-5F62-77A2896D2A5A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{97DD4E96-BB2F-45DF-96F3-12E2A5FF1146}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{97DD4E96-BB2F-45DF-96F3-12E2A5FF1146}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{97DD4E96-BB2F-45DF-96F3-12E2A5FF1146}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{97DD4E96-BB2F-45DF-96F3-12E2A5FF1146}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7D358172-2F94-4ADF-96CD-F7DBDA430057}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7D358172-2F94-4ADF-96CD-F7DBDA430057}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7D358172-2F94-4ADF-96CD-F7DBDA430057}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7D358172-2F94-4ADF-96CD-F7DBDA430057}.Release|Any CPU.Build.0 = Release|Any CPU
+		{59407CAC-A302-4A10-B113-3547492AE154}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{59407CAC-A302-4A10-B113-3547492AE154}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{59407CAC-A302-4A10-B113-3547492AE154}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{59407CAC-A302-4A10-B113-3547492AE154}.Release|Any CPU.Build.0 = Release|Any CPU
+		{958DE446-152A-4C13-BA19-D02F4DFA9ACC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{958DE446-152A-4C13-BA19-D02F4DFA9ACC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{958DE446-152A-4C13-BA19-D02F4DFA9ACC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{958DE446-152A-4C13-BA19-D02F4DFA9ACC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8A9A3E8F-925A-AA24-567F-F9F866418BDE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8A9A3E8F-925A-AA24-567F-F9F866418BDE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8A9A3E8F-925A-AA24-567F-F9F866418BDE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8A9A3E8F-925A-AA24-567F-F9F866418BDE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F03FED76-20DB-B30E-51FF-188119B1BFB7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F03FED76-20DB-B30E-51FF-188119B1BFB7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F03FED76-20DB-B30E-51FF-188119B1BFB7}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{F03FED76-20DB-B30E-51FF-188119B1BFB7}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{81DDED9D-158B-E303-5F62-77A2896D2A5A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{81DDED9D-158B-E303-5F62-77A2896D2A5A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{81DDED9D-158B-E303-5F62-77A2896D2A5A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{81DDED9D-158B-E303-5F62-77A2896D2A5A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{97DD4E96-BB2F-45DF-96F3-12E2A5FF1146} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{7D358172-2F94-4ADF-96CD-F7DBDA430057} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{59407CAC-A302-4A10-B113-3547492AE154} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{958DE446-152A-4C13-BA19-D02F4DFA9ACC} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{8A9A3E8F-925A-AA24-567F-F9F866418BDE} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E0603074-2B0E-49C6-AA12-232E64BA5EF5}
+	EndGlobalSection
+EndGlobal

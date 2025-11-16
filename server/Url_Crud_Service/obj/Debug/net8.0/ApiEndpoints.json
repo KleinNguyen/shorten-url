@@ -1,0 +1,65 @@
+[
+  {
+    "ContainingType": "Url_Crud_Service.Controllers.CrudController",
+    "Method": "GetAll",
+    "RelativePath": "api/Crud",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Url_Crud_Service.Controllers.CrudController",
+    "Method": "GetById",
+    "RelativePath": "api/Crud/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Url_Crud_Service.Controllers.CrudController",
+    "Method": "UpdateCode",
+    "RelativePath": "api/Crud/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "newCode",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Url_Crud_Service.Controllers.CrudController",
+    "Method": "Delete",
+    "RelativePath": "api/Crud/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  }
+]

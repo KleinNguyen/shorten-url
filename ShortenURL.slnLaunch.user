@@ -1,0 +1,23 @@
+[
+  {
+    "Name": "New Profile",
+    "Projects": [
+      {
+        "Path": "server\\Authentication_Service\\Authentication_Service.csproj",
+        "Action": "Start"
+      },
+      {
+        "Path": "server\\Url_Shorten_Service\\Url_Shorten_Service.csproj",
+        "Action": "Start"
+      },
+      {
+        "Path": "server\\Url_Crud_Service\\Url_Crud_Service.csproj",
+        "Action": "Start"
+      },
+      {
+        "Path": "server\\ApiGateway\\ApiGateway.csproj",
+        "Action": "Start"
+      }
+    ]
+  }
+]
