@@ -1,0 +1,50 @@
+name: Build FE + BE
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build_backend:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        service: [ApiGateway, Authentication_Service, Url_Crud_Service, Url_Shorten_Service]
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: 8.0.x
+
+      - name: Build ${{ matrix.service }}
+        run: |
+          cd backend/${{ matrix.service }}
+          dotnet restore
+          dotnet build --configuration Release
+
+  build_frontend:
+    runs-on: ubuntu-latest
+    needs: build_backend
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Install dependencies
+        run: |
+          cd frontend
+          npm install
+
+      - name: Build frontend
+        run: |
+          cd frontend
+          npm run build
