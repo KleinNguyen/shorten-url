@@ -69,7 +69,7 @@ namespace ApiGateway
 
             app.MapGet("/", () => Results.Ok(new { status = "healthy", service = "ApiGateway" }));
 
-            app.UseHttpsRedirection();
+            // app.UseHttpsRedirection();
             app.UseCors("AllowVueFrontend");
             app.UseAuthentication(); 
             app.UseAuthorization();
