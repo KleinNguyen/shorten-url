@@ -9,3 +9,15 @@ C:\Users\Hiiii\Downloads\ShortenURL\server\Shareds_Events\obj\Debug\net8.0\Share
 C:\Users\Hiiii\Downloads\ShortenURL\server\Shareds_Events\obj\Debug\net8.0\refint\Shareds_Events.dll
 C:\Users\Hiiii\Downloads\ShortenURL\server\Shareds_Events\obj\Debug\net8.0\Shareds_Events.pdb
 C:\Users\Hiiii\Downloads\ShortenURL\server\Shareds_Events\obj\Debug\net8.0\ref\Shareds_Events.dll
+D:\Homework\AMD G\amd201-cw\ShortenURL\server\Shareds_Events\bin\Debug\net8.0\Shareds_Events.deps.json
+D:\Homework\AMD G\amd201-cw\ShortenURL\server\Shareds_Events\bin\Debug\net8.0\Shareds_Events.dll
+D:\Homework\AMD G\amd201-cw\ShortenURL\server\Shareds_Events\bin\Debug\net8.0\Shareds_Events.pdb
+D:\Homework\AMD G\amd201-cw\ShortenURL\server\Shareds_Events\obj\Debug\net8.0\Shareds_Events.GeneratedMSBuildEditorConfig.editorconfig
+D:\Homework\AMD G\amd201-cw\ShortenURL\server\Shareds_Events\obj\Debug\net8.0\Shareds_Events.AssemblyInfoInputs.cache
+D:\Homework\AMD G\amd201-cw\ShortenURL\server\Shareds_Events\obj\Debug\net8.0\Shareds_Events.AssemblyInfo.cs
+D:\Homework\AMD G\amd201-cw\ShortenURL\server\Shareds_Events\obj\Debug\net8.0\Shareds_Events.csproj.CoreCompileInputs.cache
+D:\Homework\AMD G\amd201-cw\ShortenURL\server\Shareds_Events\obj\Debug\net8.0\Shareds_Events.sourcelink.json
+D:\Homework\AMD G\amd201-cw\ShortenURL\server\Shareds_Events\obj\Debug\net8.0\Shareds_Events.dll
+D:\Homework\AMD G\amd201-cw\ShortenURL\server\Shareds_Events\obj\Debug\net8.0\refint\Shareds_Events.dll
+D:\Homework\AMD G\amd201-cw\ShortenURL\server\Shareds_Events\obj\Debug\net8.0\Shareds_Events.pdb
+D:\Homework\AMD G\amd201-cw\ShortenURL\server\Shareds_Events\obj\Debug\net8.0\ref\Shareds_Events.dll

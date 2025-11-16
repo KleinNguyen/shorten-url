@@ -16,11 +16,11 @@ namespace Url_Crud_Service
         {
             var builder = WebApplication.CreateBuilder(args);
             builder.Services.AddDbContext<CrudDbContext>(options =>
-            options.UseSqlServer(builder.Configuration.GetConnectionString("UrlCrudDbConnection"),
-            sqlServerOptions => sqlServerOptions.EnableRetryOnFailure(
+            options.UseNpgsql(builder.Configuration.GetConnectionString("UrlCrudDbConnection"),
+            npgsqlOptions => npgsqlOptions.EnableRetryOnFailure(
             maxRetryCount: 5,                     // số lần retry
             maxRetryDelay: TimeSpan.FromSeconds(10), // delay tối đa giữa các lần retry
-            errorNumbersToAdd: null               // các SQL error code muốn retry thêm
+            errorCodesToAdd: null              // các SQL error code muốn retry thêm
         )
             ));
 

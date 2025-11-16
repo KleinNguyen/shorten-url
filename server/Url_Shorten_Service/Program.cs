@@ -17,12 +17,12 @@ namespace Url_Shorten_Service
         {
             var builder = WebApplication.CreateBuilder(args);
             builder.Services.AddDbContext<ShortenDbContext>(options =>
-    options.UseSqlServer(
-        builder.Configuration.GetConnectionString("UrlShortenDbConnection"),
-        sqlServerOptions => sqlServerOptions.EnableRetryOnFailure(
-            maxRetryCount: 5,                     
-            maxRetryDelay: TimeSpan.FromSeconds(10), 
-            errorNumbersToAdd: null              
+            options.UseNpgsql(
+            builder.Configuration.GetConnectionString("UrlShortenDbConnection"),
+            npgsqlOptions => npgsqlOptions.EnableRetryOnFailure(
+            maxRetryCount: 5,                     // số lần retry
+            maxRetryDelay: TimeSpan.FromSeconds(10), // delay tối đa giữa các lần retry
+            errorCodesToAdd: null                 
         )
     )
 );
