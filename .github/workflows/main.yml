@@ -64,22 +64,22 @@ jobs:
       # ---------- Build & Push Backend ----------
       - name: Build & Push ApiGateway
         run: |
-          docker build -t ${{ secrets.DOCKER_USERNAME }}/apigateway:${{ github.run_number }} ./server/ApiGateway
+          docker build -t ${{ secrets.DOCKER_USERNAME }}/apigateway:${{ github.run_number }} -f ./server/ApiGateway/Dockerfile .
           docker push ${{ secrets.DOCKER_USERNAME }}/apigateway:${{ github.run_number }}
 
       - name: Build & Push Authentication_Service
         run: |
-          docker build -t ${{ secrets.DOCKER_USERNAME }}/authservice:${{ github.run_number }} ./server/Authentication_Service
+          docker build -t ${{ secrets.DOCKER_USERNAME }}/authservice:${{ github.run_number }} -f ./server/Authentication_Service/Dockerfile .
           docker push ${{ secrets.DOCKER_USERNAME }}/authservice:${{ github.run_number }}
 
       - name: Build & Push Url_Crud_Service
         run: |
-          docker build -t ${{ secrets.DOCKER_USERNAME }}/urlcrud:${{ github.run_number }} ./server/Url_Crud_Service
+          docker build -t ${{ secrets.DOCKER_USERNAME }}/urlcrud:${{ github.run_number }} -f ./server/Url_Crud_Service/Dockerfile .
           docker push ${{ secrets.DOCKER_USERNAME }}/urlcrud:${{ github.run_number }}
 
       - name: Build & Push Url_Shorten_Service
         run: |
-          docker build -t ${{ secrets.DOCKER_USERNAME }}/urlshorten:${{ github.run_number }} ./server/Url_Shorten_Service
+          docker build -t ${{ secrets.DOCKER_USERNAME }}/urlshorten:${{ github.run_number }} -f ./server/Url_Shorten_Service/Dockerfile .
           docker push ${{ secrets.DOCKER_USERNAME }}/urlshorten:${{ github.run_number }}
 
       # ---------- Build & Push Frontend ----------
@@ -87,6 +87,7 @@ jobs:
         run: |
           docker build -t ${{ secrets.DOCKER_USERNAME }}/frontend:${{ github.run_number }} ./client
           docker push ${{ secrets.DOCKER_USERNAME }}/frontend:${{ github.run_number }}
+
 
       # ---------- Trigger Render Deploy ----------
       - name: Trigger Backend Deploy
