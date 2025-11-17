@@ -42,6 +42,33 @@
       ]
     },
     {
+      "UpstreamPathTemplate": "/gateway/auth/reset-password",
+      "UpstreamHttpMethod": ["Post"],
+      "DownstreamPathTemplate": "/api/auth/reset-password",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        { "Host": "shorten-url-auth.onrender.com", "Port": 443 }
+      ]
+    },
+        {
+      "UpstreamPathTemplate": "/gateway/auth/send-email",
+      "UpstreamHttpMethod": ["Post"],
+      "DownstreamPathTemplate": "/api/auth/send-email",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        { "Host": "shorten-url-auth.onrender.com", "Port": 443 }
+      ]
+    },
+        {
+      "UpstreamPathTemplate": "/gateway/auth/verify-token",
+      "UpstreamHttpMethod": ["Get"],
+      "DownstreamPathTemplate": "/api/auth/verify-token",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        { "Host": "shorten-url-auth.onrender.com", "Port": 443 }
+      ]
+    },
+    {
       "UpstreamPathTemplate": "/gateway/shorten",
       "UpstreamHttpMethod": ["Post"],
       "DownstreamPathTemplate": "/api/shorten",

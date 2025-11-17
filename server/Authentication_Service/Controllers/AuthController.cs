@@ -198,7 +198,9 @@ namespace Authentication_Service.Controllers
             await _context.SaveChangesAsync();
 
 
-            var resetLink = $"http://localhost:8080/reset-password?token={token}&email={user.Email}";
+            // var resetLink = $"http://localhost:8080/reset-password?token={token}&email={user.Email}";
+            var resetLink = $"https://shorten-url-client-2xgt.onrender.com/reset-password?token={token}&email={user.Email}";
+
 
 
 
