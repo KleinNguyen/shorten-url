@@ -82,10 +82,10 @@ jobs:
           docker build -t ${{ secrets.DOCKER_USERNAME }}/urlshorten:${{ github.run_number }} -f ./server/Url_Shorten_Service/Dockerfile .
           docker push ${{ secrets.DOCKER_USERNAME }}/urlshorten:${{ github.run_number }}
 
-      # ---------- Build & Push Frontend ----------
-      - name: Build & Push Frontend
+      # ---------- Build & Push Client ----------
+      - name: Build & Push Client
         run: |
-          docker build -t ${{ secrets.DOCKER_USERNAME }}/frontend:${{ github.run_number }} ./client
+          docker build -t ${{ secrets.DOCKER_USERNAME }}/frontend:${{ github.run_number }} -f ./client/Dockerfile
           docker push ${{ secrets.DOCKER_USERNAME }}/frontend:${{ github.run_number }}
 
 
