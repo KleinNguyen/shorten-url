@@ -56,39 +56,50 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      # ---------- Login Docker Hub ----------
+      # Login Docker Hub
       - name: Login to Docker Hub
         run: |
           echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
 
-      # ---------- Build & Push Backend ----------
+      # Build & Push Backend (override existing images)
       - name: Build & Push ApiGateway
         run: |
-          docker build -t ${{ secrets.DOCKER_USERNAME }}/short-url:apigateway-${{ github.run_number }} -f ./server/ApiGateway/Dockerfile .
-          docker push ${{ secrets.DOCKER_USERNAME }}/short-url:apigateway-${{ github.run_number }}
+          docker build -t ${{ secrets.DOCKER_USERNAME }}/short-url:apigateway-latest -f ./server/ApiGateway/Dockerfile .
+          docker push ${{ secrets.DOCKER_USERNAME }}/short-url:apigateway-latest
 
       - name: Build & Push Authentication_Service
         run: |
-          docker build -t ${{ secrets.DOCKER_USERNAME }}/short-url:authservice-${{ github.run_number }} -f ./server/Authentication_Service/Dockerfile .
-          docker push ${{ secrets.DOCKER_USERNAME }}/short-url:authservice-${{ github.run_number }}
+          docker build -t ${{ secrets.DOCKER_USERNAME }}/short-url:authservice-latest -f ./server/Authentication_Service/Dockerfile .
+          docker push ${{ secrets.DOCKER_USERNAME }}/short-url:authservice-latest
 
       - name: Build & Push Url_Crud_Service
         run: |
-          docker build -t ${{ secrets.DOCKER_USERNAME }}/short-url:urlcrud-${{ github.run_number }} -f ./server/Url_Crud_Service/Dockerfile .
-          docker push ${{ secrets.DOCKER_USERNAME }}/short-url:urlcrud-${{ github.run_number }}
+          docker build -t ${{ secrets.DOCKER_USERNAME }}/short-url:urlcrud-latest -f ./server/Url_Crud_Service/Dockerfile .
+          docker push ${{ secrets.DOCKER_USERNAME }}/short-url:urlcrud-latest
 
       - name: Build & Push Url_Shorten_Service
         run: |
-          docker build -t ${{ secrets.DOCKER_USERNAME }}/short-url:urlshorten-${{ github.run_number }} -f ./server/Url_Shorten_Service/Dockerfile .
-          docker push ${{ secrets.DOCKER_USERNAME }}/short-url:urlshorten-${{ github.run_number }}
+          docker build -t ${{ secrets.DOCKER_USERNAME }}/short-url:urlshorten-latest -f ./server/Url_Shorten_Service/Dockerfile .
+          docker push ${{ secrets.DOCKER_USERNAME }}/short-url:urlshorten-latest
 
       - name: Build & Push Frontend
         run: |
-          docker build -t ${{ secrets.DOCKER_USERNAME }}/short-url:frontend-${{ github.run_number }} -f ./client/Dockerfile .
-          docker push ${{ secrets.DOCKER_USERNAME }}/short-url:frontend-${{ github.run_number }}
+          docker build -t ${{ secrets.DOCKER_USERNAME }}/short-url:frontend-latest -f ./client/Dockerfile .
+          docker push ${{ secrets.DOCKER_USERNAME }}/short-url:frontend-latest
 
-      # ---------- Trigger Render Deploy ----------
+      - name: Pull and Push RabbitMQ image
+        run: |
+          docker pull rabbitmq:3-management
+          docker tag rabbitmq:3-management ${{ secrets.DOCKER_USERNAME }}/short-url:rabbitmq-latest
+          docker push ${{ secrets.DOCKER_USERNAME }}/short-url:rabbitmq-latest
 
+      - name: Pull and Push SQL Server image
+        run: |
+          docker pull mcr.microsoft.com/mssql/server:2022-latest
+          docker tag mcr.microsoft.com/mssql/server:2022-latest ${{ secrets.DOCKER_USERNAME }}/short-url:sqlserver-latest
+          docker push ${{ secrets.DOCKER_USERNAME }}/short-url:sqlserver-latest
+
+      # Trigger Render Deploy
       - name: Trigger All Server Services Deploy
         run: |
           curl -X POST ${{ secrets.RENDER_APIGATEWAY_HOOK }}
