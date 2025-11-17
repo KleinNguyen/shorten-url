@@ -51,17 +51,16 @@ namespace Url_Crud_Service
             builder.Services.AddAuthorization();
 
 
-            var rabbitHost = Environment.GetEnvironmentVariable("RABBITMQ_HOST") ?? "localhost";
             builder.Services.AddMassTransit(x =>
             {
                 x.AddConsumer<ReceiveUrlService>(); 
 
                 x.UsingRabbitMq((context, cfg) =>
                 {
-                    cfg.Host(rabbitHost, "/", h =>
+                    cfg.Host("fuji.lmq.cloudamqp.com", "ioitvvgk", h =>
                     {
-                        h.Username(Environment.GetEnvironmentVariable("RABBITMQ_USERNAME") ?? "guest");
-                        h.Password(Environment.GetEnvironmentVariable("RABBITMQ_PASSWORD") ?? "guest");
+                        h.Username("ioitvvgk");
+                        h.Password("VzJoVb6iTESpEXfATJ5oNh9PcjVw1Vmu");
                     });
 
                     cfg.ReceiveEndpoint("url-send-event", e =>
