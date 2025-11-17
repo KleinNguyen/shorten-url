@@ -2,17 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
-using Url_Crud_Service.Data;
+using Url_Shorten_Service.Data;
 
 #nullable disable
 
-namespace Url_Crud_Service.Migrations
+namespace Url_Shorten_Service.Migrations
 {
-    [DbContext(typeof(CrudDbContext))]
-    [Migration("20251116173504_InitialCreate")]
+    [DbContext(typeof(ShortenDbContext))]
+    [Migration("20251117071530_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -21,39 +21,35 @@ namespace Url_Crud_Service.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "9.0.10")
-                .HasAnnotation("Relational:MaxIdentifierLength", 63);
+                .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
-            NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
+            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("Url_Crud_Service.Models.UrlCrud", b =>
+            modelBuilder.Entity("Url_Shorten_Service.Models.UrlShorten", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
+                        .HasColumnType("int");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<DateTime>("DateTime")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Email")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("OriginalUrl")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ShortenCode")
                         .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("ShortenUrl")
-                        .IsRequired()
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("UrlCruds");
+                    b.ToTable("UrlShortenes");
                 });
 #pragma warning restore 612, 618
         }

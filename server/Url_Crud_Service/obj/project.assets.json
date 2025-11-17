@@ -5427,11 +5427,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "d:\\Homework\\AMD G\\amd201-cw\\ShortenURL\\server\\Url_Crud_Service\\Url_Crud_Service.csproj",
+      "projectUniqueName": "D:\\Homework\\AMD G\\amd201-cw\\ShortenURL\\server\\Url_Crud_Service\\Url_Crud_Service.csproj",
       "projectName": "Url_Crud_Service",
-      "projectPath": "d:\\Homework\\AMD G\\amd201-cw\\ShortenURL\\server\\Url_Crud_Service\\Url_Crud_Service.csproj",
+      "projectPath": "D:\\Homework\\AMD G\\amd201-cw\\ShortenURL\\server\\Url_Crud_Service\\Url_Crud_Service.csproj",
       "packagesPath": "C:\\Users\\huong\\.nuget\\packages\\",
-      "outputPath": "d:\\Homework\\AMD G\\amd201-cw\\ShortenURL\\server\\Url_Crud_Service\\obj\\",
+      "outputPath": "D:\\Homework\\AMD G\\amd201-cw\\ShortenURL\\server\\Url_Crud_Service\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -5452,8 +5452,8 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "d:\\Homework\\AMD G\\amd201-cw\\ShortenURL\\server\\Shareds_Events\\Shareds_Events.csproj": {
-              "projectPath": "d:\\Homework\\AMD G\\amd201-cw\\ShortenURL\\server\\Shareds_Events\\Shareds_Events.csproj"
+            "D:\\Homework\\AMD G\\amd201-cw\\ShortenURL\\server\\Shareds_Events\\Shareds_Events.csproj": {
+              "projectPath": "D:\\Homework\\AMD G\\amd201-cw\\ShortenURL\\server\\Shareds_Events\\Shareds_Events.csproj"
             }
           }
         }

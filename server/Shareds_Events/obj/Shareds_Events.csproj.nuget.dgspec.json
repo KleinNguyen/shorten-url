@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "d:\\Homework\\AMD G\\amd201-cw\\ShortenURL\\server\\Shareds_Events\\Shareds_Events.csproj": {}
+    "D:\\Homework\\AMD G\\amd201-cw\\ShortenURL\\server\\Shareds_Events\\Shareds_Events.csproj": {}
   },
   "projects": {
-    "d:\\Homework\\AMD G\\amd201-cw\\ShortenURL\\server\\Shareds_Events\\Shareds_Events.csproj": {
+    "D:\\Homework\\AMD G\\amd201-cw\\ShortenURL\\server\\Shareds_Events\\Shareds_Events.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "d:\\Homework\\AMD G\\amd201-cw\\ShortenURL\\server\\Shareds_Events\\Shareds_Events.csproj",
+        "projectUniqueName": "D:\\Homework\\AMD G\\amd201-cw\\ShortenURL\\server\\Shareds_Events\\Shareds_Events.csproj",
         "projectName": "Shareds_Events",
-        "projectPath": "d:\\Homework\\AMD G\\amd201-cw\\ShortenURL\\server\\Shareds_Events\\Shareds_Events.csproj",
+        "projectPath": "D:\\Homework\\AMD G\\amd201-cw\\ShortenURL\\server\\Shareds_Events\\Shareds_Events.csproj",
         "packagesPath": "C:\\Users\\huong\\.nuget\\packages\\",
-        "outputPath": "d:\\Homework\\AMD G\\amd201-cw\\ShortenURL\\server\\Shareds_Events\\obj\\",
+        "outputPath": "D:\\Homework\\AMD G\\amd201-cw\\ShortenURL\\server\\Shareds_Events\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
