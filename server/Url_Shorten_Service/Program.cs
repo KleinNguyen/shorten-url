@@ -56,7 +56,6 @@ namespace Url_Shorten_Service
 
             builder.Services.AddAuthorization();
 
-            var rabbitHost = Environment.GetEnvironmentVariable("RABBITMQ_HOST") ?? "localhost";
             builder.Services.AddMassTransit(x =>
             {
                 x.AddConsumer<ReceiveUrlUpdateService>();
@@ -64,10 +63,11 @@ namespace Url_Shorten_Service
 
                 x.UsingRabbitMq((context, cfg) =>
                 {
-                    cfg.Host(rabbitHost, "/", h =>
+
+                    cfg.Host("fuji.lmq.cloudamqp.com", "/", h =>
                     {
-                        h.Username(Environment.GetEnvironmentVariable("RABBITMQ_USERNAME") ?? "guest");
-                        h.Password(Environment.GetEnvironmentVariable("RABBITMQ_PASSWORD") ?? "guest");
+                        h.Username("ioitvvgk");
+                        h.Password("VzJoVb6iTESpEXfATJ5oNh9PcjVw1Vmu");
                     });
 
                     cfg.ReceiveEndpoint("url-update-event", e =>
@@ -86,7 +86,8 @@ namespace Url_Shorten_Service
             {
                 options.AddPolicy("AllowVueFrontend", policy =>
                 {
-                    policy.WithOrigins("http://localhost:8080") // Vue dev server
+                    policy.WithOrigins("http://localhost:8080",
+                        "https://shorten-url-client-2xgt.onrender.com") // Vue dev server
                           .AllowAnyMethod()
                           .AllowAnyHeader();
                 });
