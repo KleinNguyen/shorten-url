@@ -23,7 +23,7 @@ else if (isRender) {
 else {
     apiBase = "http://gateway:8080/gateway";
 }
-
+console.log("Axios shorten baseURL:", apiBase);
 console.log("Environment:",
     isLocal ? "Local" :
     isRender ? "Render" : "Docker"
@@ -43,5 +43,7 @@ if (token) {
 }
 
 console.log("VUE_APP_BASE_URL:", process.env.VUE_APP_BASE_URL);
+console.log("process.env:", process.env);
+
 
 export default api;
