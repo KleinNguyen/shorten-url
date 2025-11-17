@@ -112,7 +112,7 @@ namespace Url_Shorten_Service
             }
 
             app.UseRouting();
-            app.UseHttpsRedirection();
+            // app.UseHttpsRedirection();
             app.UseCors("AllowVueFrontend");
             app.UseAuthentication();
             app.UseAuthorization();

@@ -80,7 +80,7 @@ namespace Authentication_Service
 
             }
 
-            app.UseHttpsRedirection();
+            // app.UseHttpsRedirection();
             app.UseCors("AllowVueFrontend");
             app.UseAuthorization();
             app.MapControllers();
