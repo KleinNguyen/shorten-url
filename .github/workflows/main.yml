@@ -85,7 +85,7 @@ jobs:
       # ---------- Build & Push Client ----------
       - name: Build & Push Client
         run: |
-          docker build -t ${{ secrets.DOCKER_USERNAME }}/frontend:${{ github.run_number }} -f ./client/Dockerfile
+          docker build -t ${{ secrets.DOCKER_USERNAME }}/frontend:${{ github.run_number }} -f ./client/Dockerfile .
           docker push ${{ secrets.DOCKER_USERNAME }}/frontend:${{ github.run_number }}
 
 
