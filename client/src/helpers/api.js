@@ -17,7 +17,7 @@ if (isLocal) {
 }
 // RENDER PRODUCTION
 else if (isRender) {
-    apiBase = import.meta.env.VITE_API_URL;
+    apiBase = process.env.VUE_APP_BASE_URL || "https://short-url-api-s3jq.onrender.com";
 }
 // DOCKER COMPOSE / EVERYTHING ELSE
 else {
@@ -42,6 +42,6 @@ if (token) {
     api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
 }
 
-console.log("VITE_API_URL:", import.meta.env.VITE_API_URL);
+console.log("VUE_APP_BASE_URL:", process.env.VUE_APP_BASE_URL);
 
 export default api;
