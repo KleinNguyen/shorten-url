@@ -1,47 +1,42 @@
 ﻿import axios from "axios";
 
-// runtime check host
-const isHost = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1";
+const hostname = window.location.hostname;
 
-// baseURL logic
-// const apiBase = isHost
-//     ? "http://localhost:8888/gateway" // host browser → mapped port Ocelot
-//     : "http://gateway:8080/gateway";  // container → Docker network
+const isLocal =
+    hostname === "localhost" || hostname === "127.0.0.1";
 
-// console.log(`Running in ${isHost ? "host browser" : "Docker container"}`);
-// console.log("Axios baseURL:", apiBase);
+const isRender = hostname.includes("onrender.com");
 
-
-const isRender = window.location.hostname.includes("onrender.com");
-
-// Determine baseURL
 let apiBase;
 
+// LOCAL DEVELOPMENT
 if (isLocal) {
     apiBase = "http://localhost:8888/gateway";
 }
+// RENDER PRODUCTION
 else if (isRender) {
-    apiBase = import.meta.env.SHORT_URL_BASE;
+    apiBase = import.meta.env.VITE_API_URL;
 }
+// DOCKER COMPOSE
 else {
     apiBase = "http://gateway:8080/gateway";
 }
 
-console.log("Environment:", isLocal ? "Local" : isRender ? "Render" : "Docker");
+console.log("Environment:",
+    isLocal ? "Local" :
+    isRender ? "Render" : "Docker"
+);
+
 console.log("Axios baseURL:", apiBase);
 
-// Tạo instance axios
 const api = axios.create({
     baseURL: apiBase,
-    headers: {
-        'Content-Type': 'application/json',
-    },
+    headers: { "Content-Type": "application/json" }
 });
 
-// Gắn token nếu có
-const token = localStorage.getItem('token');
+const token = localStorage.getItem("token");
 if (token) {
-    api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+    api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
 }
 
 export default api;
