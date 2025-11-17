@@ -59,7 +59,7 @@
         { "Host": "shorten-url-auth.onrender.com", "Port": 443 }
       ]
     },
-        {
+    {
       "UpstreamPathTemplate": "/gateway/auth/verify-token",
       "UpstreamHttpMethod": ["Get"],
       "DownstreamPathTemplate": "/api/auth/verify-token",

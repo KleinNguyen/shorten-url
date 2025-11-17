@@ -10,7 +10,7 @@ export const getAllLinks = async () => {
 // Cập nhật link
 export const updateLink = async (id, newCode) => {
     const res = await api.put(`/crud/${id}`, JSON.stringify(newCode), {
-        headers: { "Content-Type": "application/json" } // quan trọng
+        headers: { "Content-Type": "application/json" } 
     });
     return res.data;
 };

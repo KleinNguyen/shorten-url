@@ -18,8 +18,6 @@ export const login = async (data) => {
     return res.data;
 };
 
-
-
 // send email
 export const sendEmail = async (data) => {
     const res = await api.post("/auth/send-email", data);

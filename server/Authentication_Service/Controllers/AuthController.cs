@@ -187,24 +187,15 @@ namespace Authentication_Service.Controllers
             if (user == null)
                 return BadRequest("Email not found.");
 
-
             var token = Convert.ToBase64String(RandomNumberGenerator.GetBytes(32))
                 .Replace("+", "").Replace("/", "").Replace("=", ""); 
 
             user.ResetToken = token;
             user.ResetTokenExpiry = DateTime.UtcNow.AddMinutes(30); 
             user.ResetTokenVerified = false;
-
             await _context.SaveChangesAsync();
-
-
             // var resetLink = $"http://localhost:8080/reset-password?token={token}&email={user.Email}";
             var resetLink = $"https://shorten-url-client-2xgt.onrender.com/reset-password?token={token}&email={user.Email}";
-
-
-
-
-
             await emailService.SendEmailAsync(
                 sendEmailDto.Email,
                 "Password Reset Request",
@@ -236,17 +227,12 @@ namespace Authentication_Service.Controllers
             await _context.SaveChangesAsync();
 
             return Ok(new { success = true, message = "Email verified successfully. You can now reset your password.", token = token });
-
-
-
         }
-
 
         [HttpPost("reset-password")]
         [AllowAnonymous]
         public async Task<IActionResult> ResetPassword(ResetPasswordDto resetPasswordDto)
         {
-
 
             var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == resetPasswordDto.Email);
 
