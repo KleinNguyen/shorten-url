@@ -96,7 +96,7 @@ services:
   # ============= FRONTEND VUE =================
   client:
     build:
-      context: client
+      context: ./client
       dockerfile: Dockerfile
     container_name: vue_client
     ports:

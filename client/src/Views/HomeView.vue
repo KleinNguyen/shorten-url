@@ -18,7 +18,7 @@
 
             <div v-if="shortenedUrl" class="ui segment result-box">
                 <h5 class="ui header">Your shortened URL:</h5>
-                <a :href="shortenedUrl" target="_blank" rel="noopener noreferrer" class="ui teal text">
+                <a :href="shortenedUrl" target="_blank" rel="noopener noreferrer">
                     {{ shortenedUrl }}
                 </a>
             </div>
@@ -119,7 +119,7 @@
     }
 
     .ui.header.center.aligned {
-        color: white !important;
+        color: #000;
         font-size: 35px;
     }
 
@@ -138,11 +138,11 @@
 
     .result-box {
         text-align: center;
-        background: rgba(255, 255, 255, 0.2);
+        background: #ffffff;
         border-radius: 8px;
         padding: 1rem;
         border: 1px solid rgba(255, 255, 255, 0.3);
-        color: #000;
+        color: #ffffff;
     }
 
     .mt-3 {
