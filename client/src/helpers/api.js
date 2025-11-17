@@ -4,11 +4,30 @@
 const isHost = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1";
 
 // baseURL logic
-const apiBase = isHost
-    ? "http://localhost:8888/gateway" // host browser → mapped port Ocelot
-    : "http://gateway:8080/gateway";  // container → Docker network
+// const apiBase = isHost
+//     ? "http://localhost:8888/gateway" // host browser → mapped port Ocelot
+//     : "http://gateway:8080/gateway";  // container → Docker network
 
-console.log(`Running in ${isHost ? "host browser" : "Docker container"}`);
+// console.log(`Running in ${isHost ? "host browser" : "Docker container"}`);
+// console.log("Axios baseURL:", apiBase);
+
+
+const isRender = window.location.hostname.includes("onrender.com");
+
+// Determine baseURL
+let apiBase;
+
+if (isLocal) {
+    apiBase = "http://localhost:8888/gateway";
+}
+else if (isRender) {
+    apiBase = import.meta.env.SHORT_URL_BASE;
+}
+else {
+    apiBase = "http://gateway:8080/gateway";
+}
+
+console.log("Environment:", isLocal ? "Local" : isRender ? "Render" : "Docker");
 console.log("Axios baseURL:", apiBase);
 
 // Tạo instance axios
