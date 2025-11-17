@@ -52,9 +52,13 @@ namespace ApiGateway
             {
                 options.AddPolicy("AllowVueFrontend", policy =>
                 {
-                    policy.WithOrigins("http://localhost:8080") 
+                    policy.WithOrigins(
+                        "http://localhost:8080",
+                        "https://shorten-url-client-2xgt.onrender.com"
+                    ) 
                           .AllowAnyMethod()
-                          .AllowAnyHeader();
+                          .AllowAnyHeader()
+                          .AllowCredentials(); 
                 });
             });
 
