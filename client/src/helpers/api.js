@@ -39,4 +39,8 @@ if (token) {
     api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
 }
 
+console.log("RENDER ENV:", import.meta.env);
+console.log("VITE_API_URL:", import.meta.env.VITE_API_URL);
+
+
 export default api;
