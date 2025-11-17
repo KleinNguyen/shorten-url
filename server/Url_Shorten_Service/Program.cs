@@ -16,16 +16,19 @@ namespace Url_Shorten_Service
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+            // builder.Services.AddDbContext<ShortenDbContext>(options =>
+            // options.UseNpgsql(
+            // builder.Configuration.GetConnectionString("UrlShortenDbConnection"),
+            // npgsqlOptions => npgsqlOptions.EnableRetryOnFailure(
+            // maxRetryCount: 5,                     // số lần retry
+            // maxRetryDelay: TimeSpan.FromSeconds(10), // delay tối đa giữa các lần retry
+            // errorCodesToAdd: null)));
             builder.Services.AddDbContext<ShortenDbContext>(options =>
-            options.UseNpgsql(
-            builder.Configuration.GetConnectionString("UrlShortenDbConnection"),
-            npgsqlOptions => npgsqlOptions.EnableRetryOnFailure(
-            maxRetryCount: 5,                     // số lần retry
-            maxRetryDelay: TimeSpan.FromSeconds(10), // delay tối đa giữa các lần retry
-            errorCodesToAdd: null                 
-        )
-    )
-);
+            options.UseSqlServer(builder.Configuration.GetConnectionString("UrlShortenDbConnection"),
+            sqlServerOptions => sqlServerOptions.EnableRetryOnFailure(
+            maxRetryCount: 5,                     
+            maxRetryDelay: TimeSpan.FromSeconds(10), 
+            errorNumbersToAdd: null)));
 
 
             builder.Services.AddScoped<SendUrlService>();

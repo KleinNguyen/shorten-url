@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Homework\\AMD G\\amd201-cw\\ShortenURL\\server\\Authentication_Service\\Authentication_Service.csproj": {}
+    "d:\\Homework\\AMD G\\amd201-cw\\ShortenURL\\server\\Authentication_Service\\Authentication_Service.csproj": {}
   },
   "projects": {
-    "D:\\Homework\\AMD G\\amd201-cw\\ShortenURL\\server\\Authentication_Service\\Authentication_Service.csproj": {
+    "d:\\Homework\\AMD G\\amd201-cw\\ShortenURL\\server\\Authentication_Service\\Authentication_Service.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Homework\\AMD G\\amd201-cw\\ShortenURL\\server\\Authentication_Service\\Authentication_Service.csproj",
+        "projectUniqueName": "d:\\Homework\\AMD G\\amd201-cw\\ShortenURL\\server\\Authentication_Service\\Authentication_Service.csproj",
         "projectName": "Authentication_Service",
-        "projectPath": "D:\\Homework\\AMD G\\amd201-cw\\ShortenURL\\server\\Authentication_Service\\Authentication_Service.csproj",
+        "projectPath": "d:\\Homework\\AMD G\\amd201-cw\\ShortenURL\\server\\Authentication_Service\\Authentication_Service.csproj",
         "packagesPath": "C:\\Users\\huong\\.nuget\\packages\\",
-        "outputPath": "D:\\Homework\\AMD G\\amd201-cw\\ShortenURL\\server\\Authentication_Service\\obj\\",
+        "outputPath": "d:\\Homework\\AMD G\\amd201-cw\\ShortenURL\\server\\Authentication_Service\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -59,6 +59,10 @@
               "version": "[8.0.0, )"
             },
             "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[9.0.10, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
               "version": "[9.0.10, )"
             },

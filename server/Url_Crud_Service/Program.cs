@@ -15,14 +15,18 @@ namespace Url_Crud_Service
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+            // builder.Services.AddDbContext<CrudDbContext>(options =>
+            // options.UseNpgsql(builder.Configuration.GetConnectionString("UrlCrudDbConnection"),
+            // npgsqlOptions => npgsqlOptions.EnableRetryOnFailure(
+            // maxRetryCount: 5,                     // số lần retry
+            // maxRetryDelay: TimeSpan.FromSeconds(10), // delay tối đa giữa các lần retry
+            // errorCodesToAdd: null)));
             builder.Services.AddDbContext<CrudDbContext>(options =>
-            options.UseNpgsql(builder.Configuration.GetConnectionString("UrlCrudDbConnection"),
-            npgsqlOptions => npgsqlOptions.EnableRetryOnFailure(
-            maxRetryCount: 5,                     // số lần retry
-            maxRetryDelay: TimeSpan.FromSeconds(10), // delay tối đa giữa các lần retry
-            errorCodesToAdd: null              // các SQL error code muốn retry thêm
-        )
-            ));
+                options.UseSqlServer(builder.Configuration.GetConnectionString("UrlCrudDbConnection"),
+                sqlServerOptions => sqlServerOptions.EnableRetryOnFailure(
+                maxRetryCount: 5,                     // số lần retry
+                maxRetryDelay: TimeSpan.FromSeconds(10), // delay tối đa giữa các lần retry
+                errorNumbersToAdd: null)));
 
             builder.Services.AddAuthentication(options =>
             {
