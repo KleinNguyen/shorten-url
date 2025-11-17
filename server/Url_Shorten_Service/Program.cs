@@ -64,11 +64,11 @@ namespace Url_Shorten_Service
                 x.UsingRabbitMq((context, cfg) =>
                 {
 
-                    cfg.Host("fuji.lmq.cloudamqp.com", "ioitvvgk", h =>
-                    {
-                        h.Username("ioitvvgk");
-                        h.Password("VzJoVb6iTESpEXfATJ5oNh9PcjVw1Vmu");
-                    });
+                cfg.Host("fuji.lmq.cloudamqp.com", "/ioitvvgk", h =>
+                {
+                    h.Username("ioitvvgk");
+                    h.Password("VzJoVb6iTESpEXfATJ5oNh9PcjVw1Vmu");
+                });
 
                     cfg.ReceiveEndpoint("url-update-event", e =>
                     {
