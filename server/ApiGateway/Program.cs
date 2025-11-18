@@ -54,7 +54,7 @@ namespace ApiGateway
                 {
                     policy.WithOrigins(
                         "http://localhost:8080",
-                        "https://shorten-url-client-2xgt.onrender.com"
+                        "https://shorten-url-client-7pz2.onrender.com"
                     ) 
                         .AllowAnyMethod()
                         .AllowAnyHeader()

@@ -194,7 +194,7 @@ namespace Authentication_Service.Controllers
             user.ResetTokenVerified = false;
             await _context.SaveChangesAsync();
 
-            var resetLink = $"https://shorten-url-client-2xgt.onrender.com/reset-password?token={token}&email={user.Email}";
+            var resetLink = $"https://shorten-url-client-7pz2.onrender.com/reset-password?token={token}&email={user.Email}";
 
             try
             {
@@ -214,9 +214,6 @@ namespace Authentication_Service.Controllers
 
             return Ok("A password reset link has been sent to your email.");
         }
-
-
-
 
         [HttpGet("verify-token")]
         [AllowAnonymous]
@@ -267,10 +264,6 @@ namespace Authentication_Service.Controllers
 
             return Ok("Password has been reset successfully. You can now login with your new password.");
         }
-
-        [HttpGet("/api/health")]
-        [AllowAnonymous]
-        public IActionResult Health() => Ok("Service is running");
 
     }
 }

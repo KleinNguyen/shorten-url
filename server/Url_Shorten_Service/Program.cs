@@ -87,7 +87,7 @@ namespace Url_Shorten_Service
                 options.AddPolicy("AllowVueFrontend", policy =>
                 {
                     policy.WithOrigins("http://localhost:8080",
-                        "https://shorten-url-client-2xgt.onrender.com") // Vue dev server
+                        "https://shorten-url-client-7pz2.onrender.com") // Vue dev server
                           .AllowAnyMethod()
                           .AllowAnyHeader();
                 });

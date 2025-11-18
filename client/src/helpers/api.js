@@ -17,7 +17,7 @@ if (isLocal) {
 }
 // RENDER PRODUCTION
 else if (isRender) {
-    apiBase = process.env.VUE_APP_BASE_URL || "https://short-url-api-s3jq.onrender.com/gateway";
+    apiBase = process.env.VUE_APP_BASE_URL || "https://short-url-api-utgu.onrender.com/gateway";
 }
 // DOCKER COMPOSE / EVERYTHING ELSE
 else {
