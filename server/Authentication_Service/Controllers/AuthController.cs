@@ -178,15 +178,16 @@ namespace Authentication_Service.Controllers
         }
 
 
-
         [HttpPost("send-email")]
         [AllowAnonymous]
         public async Task<IActionResult> RequestForgotPassword(SendEmailDto sendEmailDto, EmailService emailService)
         {
+
             var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == sendEmailDto.Email);
             if (user == null)
                 return BadRequest("Email not found.");
 
+            // Tạo token reset password
             var token = Convert.ToBase64String(RandomNumberGenerator.GetBytes(32))
                 .Replace("+", "").Replace("/", "").Replace("=", ""); 
 
@@ -194,18 +195,31 @@ namespace Authentication_Service.Controllers
             user.ResetTokenExpiry = DateTime.UtcNow.AddMinutes(30); 
             user.ResetTokenVerified = false;
             await _context.SaveChangesAsync();
-            // var resetLink = $"http://localhost:8080/reset-password?token={token}&email={user.Email}";
+
+            // Link reset password
             var resetLink = $"https://shorten-url-client-2xgt.onrender.com/reset-password?token={token}&email={user.Email}";
-            await emailService.SendEmailAsync(
-                sendEmailDto.Email,
-                "Password Reset Request",
-                $@"Hello {user.UserName},
 
-                You requested to reset your password. Click the link below to verify your email and reset your password:{resetLink}
+            _ = Task.Run(async () =>
+            {
+                try
+                {
+                    await emailService.SendEmailAsync(
+                        sendEmailDto.Email,
+                        "Password Reset Request",
+                        $@"Hello {user.UserName},
+
+                You requested to reset your password. Click the link below to verify your email and reset your password: {resetLink}
                 This link will expire in 30 minutes.");
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Error sending email: " + ex.Message);
+                }
+            });
 
-            return Ok("A password reset link has been sent to your email.");
+            return Ok("A password reset link has been sent to your email (may take a few seconds).");
         }
+
 
 
         [HttpGet("verify-token")]

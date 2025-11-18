@@ -14,12 +14,7 @@ namespace Authentication_Service
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
-            // builder.Services.AddDbContext<AuthenticationDbContext>(options =>
-            //     options.UseNpgsql(builder.Configuration.GetConnectionString("AuthDbConnection"),
-            //     npgsqlOptions => npgsqlOptions.EnableRetryOnFailure(
-            //         maxRetryCount: 5, 
-            //         maxRetryDelay: TimeSpan.FromSeconds(10), 
-            //         errorCodesToAdd: null)));
+
             builder.Services.AddDbContext<AuthenticationDbContext>(options =>
             options.UseSqlServer(builder.Configuration.GetConnectionString("AuthDbConnection"),
             sqlServerOptions => sqlServerOptions.EnableRetryOnFailure(
