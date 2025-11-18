@@ -131,7 +131,6 @@ namespace Authentication_Service.Controllers
                 user.Email = updateDto.Email;
             }
 
-
             if (!string.IsNullOrWhiteSpace(updateDto.UserName))
             {
                 user.UserName = updateDto.UserName;
@@ -161,7 +160,6 @@ namespace Authentication_Service.Controllers
                 user.Email
             });
         }
-
 
         [HttpDelete("{id}")]
         [AllowAnonymous]

@@ -1,6 +1,9 @@
 ﻿{
   "GlobalConfiguration": {
-    "BaseUrl": "https://short-url-api-utgu.onrender.com"
+    "BaseUrl": "https://short-url-api-utgu.onrender.com",
+    "QoSOptions": {
+      "TimeoutValue": 240000
+    }
   },
   "Routes": [
     {
