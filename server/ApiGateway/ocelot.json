@@ -59,7 +59,7 @@
     },
     {
       "UpstreamPathTemplate": "/gateway/auth/verify-token",
-      "UpstreamHttpMethod": ["Post"],
+      "UpstreamHttpMethod": ["Get"],
       "DownstreamPathTemplate": "/api/auth/verify-token",
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
