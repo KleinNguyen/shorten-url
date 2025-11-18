@@ -68,7 +68,7 @@
                     });
                 }
                 catch (err) {
-                    const message = err.response?.data?.message || "Email not found";
+                    const message = err.response?.data?.message;
                     Swal.fire({
                         icon: 'error',
                         title: 'Error!',
