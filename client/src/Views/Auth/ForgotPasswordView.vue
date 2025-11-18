@@ -68,7 +68,8 @@
                     });
                 }
                 catch (err) {
-                    const message = err.response?.data?.message;
+                    const message = err.response?.data?.message || "User not found!";
+                    console.error("Send email error:", err);
                     Swal.fire({
                         icon: 'error',
                         title: 'Error!',
