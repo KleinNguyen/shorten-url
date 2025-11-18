@@ -39,7 +39,6 @@ namespace ApiGateway
                     };
                 });
 
-            // ✅ AddPolly() đã có - ĐÚNG!
             builder.Services.AddOcelot(builder.Configuration)
                 .AddCacheManager(x =>
                 {
@@ -70,25 +69,15 @@ namespace ApiGateway
                 app.UseSwaggerUI();
             }
 
-            app.MapGet("/", () => Results.Ok(new 
-            { 
-                status = "healthy", 
-                service = "ApiGateway"
-            }));
+            app.MapGet("/", () => Results.Ok(new { status = "healthy", service = "ApiGateway" }));
+            app.MapGet("/health", () => Results.Ok(new { status = "Gateway healthy" }));
 
-            app.MapGet("/health", () => Results.Ok(new 
-            { 
-                status = "Gateway healthy"
-            }));
-
-            // app.UseHttpsRedirection();
             app.UseCors("AllowVueFrontend");
             app.UseAuthentication(); 
             app.UseAuthorization();
-
             app.MapControllers();
-            
-            await app.UseOcelot();  
+
+            await app.UseOcelot(); 
 
             app.Run();
         }
