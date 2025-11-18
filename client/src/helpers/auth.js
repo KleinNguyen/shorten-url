@@ -24,12 +24,6 @@ export const sendEmail = async (data) => {
     return res.data;
 };
 
-// verify
-export const verifyCode = async (data) => {
-    const res = await api.post("/auth/verify-code", data);
-    return res.data;
-};
-
 export const verifyToken = async (token) => {
     const res = await api.get(`/auth/verify-token?token=${token}`);
     return res.data;

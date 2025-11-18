@@ -1,100 +1,132 @@
 ﻿{
   "GlobalConfiguration": {
-    "BaseUrl": "https://short-url-api-utgu.onrender.com",
-    "QoSOptions": {
-      "TimeoutValue": 240000
-    }
+    "BaseUrl": "https://shorten-url-client-7pz2.onrender.com"
   },
   "Routes": [
+    
     {
       "UpstreamPathTemplate": "/gateway/auth",
-      "UpstreamHttpMethod": ["Get"],
+      "UpstreamHttpMethod": [ "Get" ],
       "DownstreamPathTemplate": "/api/auth",
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
-        { "Host": "shorten-url-auth-4xjs.onrender.com", "Port": 443 }
+        {
+          "Host": "shorten-url-auth-4xjs.onrender.com",
+          "Port": 443
+        }
       ]
     },
     {
       "UpstreamPathTemplate": "/gateway/auth/{id}",
-      "UpstreamHttpMethod": ["Put", "Delete"],
+      "UpstreamHttpMethod": [ "Put", "Delete" ],
       "DownstreamPathTemplate": "/api/auth/{id}",
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
-        { "Host": "shorten-url-auth-4xjs.onrender.com", "Port": 443 }
+        {
+          "Host": "shorten-url-auth-4xjs.onrender.com",
+          "Port": 443
+        }
       ]
     },
     {
       "UpstreamPathTemplate": "/gateway/auth/register",
-      "UpstreamHttpMethod": ["Post"],
+      "UpstreamHttpMethod": [ "Post" ],
       "DownstreamPathTemplate": "/api/auth/register",
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
-        { "Host": "shorten-url-auth-4xjs.onrender.com", "Port": 443 }
+        {
+          "Host": "shorten-url-auth-4xjs.onrender.com",
+          "Port": 443
+        }
       ]
     },
     {
       "UpstreamPathTemplate": "/gateway/auth/login",
-      "UpstreamHttpMethod": ["Post"],
+      "UpstreamHttpMethod": [ "Post" ],
       "DownstreamPathTemplate": "/api/auth/login",
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
-        { "Host": "shorten-url-auth-4xjs.onrender.com", "Port": 443 }
-      ]
-    },
-    {
-      "UpstreamPathTemplate": "/gateway/auth/reset-password",
-      "UpstreamHttpMethod": ["Post"],
-      "DownstreamPathTemplate": "/api/auth/reset-password",
-      "DownstreamScheme": "https",
-      "DownstreamHostAndPorts": [
-        { "Host": "shorten-url-auth-4xjs.onrender.com", "Port": 443 }
+        {
+          "Host": "shorten-url-auth-4xjs.onrender.com",
+          "Port": 443
+        }
       ]
     },
     {
       "UpstreamPathTemplate": "/gateway/auth/send-email",
-      "UpstreamHttpMethod": ["Post"],
+      "UpstreamHttpMethod": [ "Post" ],
       "DownstreamPathTemplate": "/api/auth/send-email",
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
-        { "Host": "shorten-url-auth-4xjs.onrender.com", "Port": 443 }
+        {
+          "Host": "shorten-url-auth-4xjs.onrender.com",
+          "Port": 443
+        }
+      ]
+    },
+    {
+      "UpstreamPathTemplate": "/gateway/auth/reset-password",
+      "UpstreamHttpMethod": [ "Post" ],
+      "DownstreamPathTemplate": "/api/auth/reset-password",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "shorten-url-auth-4xjs.onrender.com",
+          "Port": 443
+        }
       ]
     },
     {
       "UpstreamPathTemplate": "/gateway/auth/verify-token",
-      "UpstreamHttpMethod": ["Get"],
+      "UpstreamHttpMethod": [ "Get" ],
       "DownstreamPathTemplate": "/api/auth/verify-token",
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
-        { "Host": "shorten-url-auth-4xjs.onrender.com", "Port": 443 }
+        {
+          "Host": "shorten-url-auth-4xjs.onrender.com",
+          "Port": 443
+        }
       ]
     },
+
+    
     {
       "UpstreamPathTemplate": "/gateway/shorten",
-      "UpstreamHttpMethod": ["Post"],
+      "UpstreamHttpMethod": [ "Post" ],
       "DownstreamPathTemplate": "/api/shorten",
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
-        { "Host": "shorten-url-shorten-4a9m.onrender.com", "Port": 443 }
+        {
+          "Host": "shorten-url-shorten-4a9m.onrender.com",
+          "Port": 443
+        }
       ]
     },
+
+    
     {
       "UpstreamPathTemplate": "/gateway/crud",
-      "UpstreamHttpMethod": ["Get"],
+      "UpstreamHttpMethod": [ "Get" ],
       "DownstreamPathTemplate": "/api/crud",
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
-        { "Host": "shorten-url-crud-ln80.onrender.com", "Port": 443 }
+        {
+          "Host": "shorten-url-crud-ln80.onrender.com",
+          "Port": 443
+        }
       ],
       "AuthenticationOptions": { "AuthenticationProviderKey": "Bearer" }
     },
     {
       "UpstreamPathTemplate": "/gateway/crud/{id}",
-      "UpstreamHttpMethod": ["Get", "Put", "Delete"],
+      "UpstreamHttpMethod": [ "Get", "Put", "Delete" ],
       "DownstreamPathTemplate": "/api/crud/{id}",
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
-        { "Host": "shorten-url-crud-ln80.onrender.com", "Port": 443 }
+        {
+          "Host": "shorten-url-crud-ln80.onrender.com",
+          "Port": 443
+        }
       ],
       "AuthenticationOptions": { "AuthenticationProviderKey": "Bearer" }
     }

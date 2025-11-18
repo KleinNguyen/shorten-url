@@ -16,16 +16,16 @@ namespace Authentication_Service.Services
 
         public async Task SendEmailAsync(string toEmail, string subject, string message)
         {
-            using var smtp = new SmtpClient("smtp.gmail.com")
+            var smtp = new SmtpClient("smtp.gmail.com")
             {
                 Port = 587,
                 Credentials = new NetworkCredential(
-                    _config["Email:Username"],   
-                    _config["Email:Password"]),  
+                    _config["Email:Username"],
+                    _config["Email:Password"]),
                 EnableSsl = true
             };
 
-            using var mail = new MailMessage
+            var mail = new MailMessage
             {
                 From = new MailAddress(_config["Email:Username"]),
                 Subject = subject,

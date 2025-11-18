@@ -60,8 +60,8 @@ namespace Authentication_Service
                     policy.WithOrigins("http://localhost:8080",
                         "https://shorten-url-client-7pz2.onrender.com"
                     ) 
-                          .AllowAnyMethod()
-                          .AllowAnyHeader();
+                            .AllowAnyMethod()
+                            .AllowAnyHeader();
                 });
             }); 
 
@@ -73,7 +73,6 @@ namespace Authentication_Service
                 status = "Authentication healthy"
             }));
 
-           
             if (app.Environment.IsDevelopment())
             {
                 app.UseSwagger();

@@ -131,6 +131,7 @@ namespace Authentication_Service.Controllers
                 user.Email = updateDto.Email;
             }
 
+
             if (!string.IsNullOrWhiteSpace(updateDto.UserName))
             {
                 user.UserName = updateDto.UserName;
@@ -161,6 +162,7 @@ namespace Authentication_Service.Controllers
             });
         }
 
+
         [HttpDelete("{id}")]
         [AllowAnonymous]
         public async Task<IActionResult> DeleteUser(int id)
@@ -175,7 +177,6 @@ namespace Authentication_Service.Controllers
             return Ok("Account deleted successfully.");
         }
 
-
         [HttpPost("send-email")]
         [AllowAnonymous]
         public async Task<IActionResult> RequestForgotPassword(SendEmailDto sendEmailDto, EmailService emailService)
@@ -184,34 +185,33 @@ namespace Authentication_Service.Controllers
             if (user == null)
                 return BadRequest("Email not found.");
 
+
             var token = Convert.ToBase64String(RandomNumberGenerator.GetBytes(32))
                 .Replace("+", "").Replace("/", "").Replace("=", ""); 
 
             user.ResetToken = token;
             user.ResetTokenExpiry = DateTime.UtcNow.AddMinutes(30); 
             user.ResetTokenVerified = false;
+
             await _context.SaveChangesAsync();
+
 
             var resetLink = $"https://shorten-url-client-7pz2.onrender.com/reset-password?token={token}&email={user.Email}";
 
-            try
-            {
-                await emailService.SendEmailAsync(
-                    sendEmailDto.Email,
-                    "Password Reset Request",
-                    $@"Hello {user.UserName},
 
-        You requested to reset your password. Click the link below to verify your email and reset your password: {resetLink}
-        This link will expire in 30 minutes."
-                );
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, $"Failed to send email: {ex.Message}");
-            }
+
+
+            await emailService.SendEmailAsync(
+                sendEmailDto.Email,
+                "Password Reset Request",
+                $@"Hello {user.UserName},
+
+                You requested to reset your password. Click the link below to verify your email and reset your password:{resetLink}
+                This link will expire in 30 minutes.");
 
             return Ok("A password reset link has been sent to your email.");
         }
+
 
         [HttpGet("verify-token")]
         [AllowAnonymous]
@@ -232,12 +232,17 @@ namespace Authentication_Service.Controllers
             await _context.SaveChangesAsync();
 
             return Ok(new { success = true, message = "Email verified successfully. You can now reset your password.", token = token });
+
+
+
         }
+
 
         [HttpPost("reset-password")]
         [AllowAnonymous]
         public async Task<IActionResult> ResetPassword(ResetPasswordDto resetPasswordDto)
         {
+
 
             var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == resetPasswordDto.Email);
 
@@ -262,7 +267,5 @@ namespace Authentication_Service.Controllers
 
             return Ok("Password has been reset successfully. You can now login with your new password.");
         }
-
     }
 }
-
