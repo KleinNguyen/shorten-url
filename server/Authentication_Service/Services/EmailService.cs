@@ -20,14 +20,14 @@ namespace Authentication_Service.Services
             {
                 Port = 587,
                 Credentials = new NetworkCredential(
-                    _config["Email:nguyenhuong150905@gmail.com"],   
-                    _config["Email:mbro tdib xond gfnh"]),  
+                    _config["Email:Username"],   
+                    _config["Email:Password"]),  
                 EnableSsl = true
             };
 
             using var mail = new MailMessage
             {
-                From = new MailAddress(_config["Email:nguyenhuong150905@gmail.com"]),
+                From = new MailAddress(_config["Email:Username"]),
                 Subject = subject,
                 Body = message,
                 IsBodyHtml = false
