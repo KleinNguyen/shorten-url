@@ -73,14 +73,12 @@ namespace ApiGateway
             app.MapGet("/", () => Results.Ok(new 
             { 
                 status = "healthy", 
-                service = "ApiGateway",
-                timestamp = DateTime.UtcNow
+                service = "ApiGateway"
             }));
 
             app.MapGet("/health", () => Results.Ok(new 
             { 
-                status = "healthy",
-                timestamp = DateTime.UtcNow
+                status = "Gateway healthy"
             }));
 
             // app.UseHttpsRedirection();
