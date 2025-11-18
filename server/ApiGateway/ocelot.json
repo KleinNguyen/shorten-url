@@ -1,8 +1,9 @@
-﻿
-
-{
+﻿{
   "GlobalConfiguration": {
-    "BaseUrl": "https://short-url-api-s3jq.onrender.com"
+    "BaseUrl": "https://short-url-api-s3jq.onrender.com",
+    "QoSOptions": {
+      "TimeoutValue": 120000
+    }
   },
   "Routes": [
     {
@@ -12,7 +13,12 @@
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         { "Host": "shorten-url-auth.onrender.com", "Port": 443 }
-      ]
+      ],
+      "QoSOptions": {
+        "ExceptionsAllowedBeforeBreaking": 3,
+        "DurationOfBreak": 30000,
+        "TimeoutValue": 120000
+      }
     },
     {
       "UpstreamPathTemplate": "/gateway/auth/{id}",
@@ -21,7 +27,12 @@
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         { "Host": "shorten-url-auth.onrender.com", "Port": 443 }
-      ]
+      ],
+      "QoSOptions": {
+        "ExceptionsAllowedBeforeBreaking": 3,
+        "DurationOfBreak": 30000,
+        "TimeoutValue": 120000
+      }
     },
     {
       "UpstreamPathTemplate": "/gateway/auth/register",
@@ -30,7 +41,12 @@
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         { "Host": "shorten-url-auth.onrender.com", "Port": 443 }
-      ]
+      ],
+      "QoSOptions": {
+        "ExceptionsAllowedBeforeBreaking": 3,
+        "DurationOfBreak": 30000,
+        "TimeoutValue": 120000
+      }
     },
     {
       "UpstreamPathTemplate": "/gateway/auth/login",
@@ -39,7 +55,12 @@
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         { "Host": "shorten-url-auth.onrender.com", "Port": 443 }
-      ]
+      ],
+      "QoSOptions": {
+        "ExceptionsAllowedBeforeBreaking": 3,
+        "DurationOfBreak": 30000,
+        "TimeoutValue": 120000
+      }
     },
     {
       "UpstreamPathTemplate": "/gateway/auth/reset-password",
@@ -48,16 +69,26 @@
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         { "Host": "shorten-url-auth.onrender.com", "Port": 443 }
-      ]
+      ],
+      "QoSOptions": {
+        "ExceptionsAllowedBeforeBreaking": 3,
+        "DurationOfBreak": 30000,
+        "TimeoutValue": 120000
+      }
     },
-        {
+    {
       "UpstreamPathTemplate": "/gateway/auth/send-email",
       "UpstreamHttpMethod": ["Post"],
       "DownstreamPathTemplate": "/api/auth/send-email",
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         { "Host": "shorten-url-auth.onrender.com", "Port": 443 }
-      ]
+      ],
+      "QoSOptions": {
+        "ExceptionsAllowedBeforeBreaking": 3,
+        "DurationOfBreak": 30000,
+        "TimeoutValue": 120000
+      }
     },
     {
       "UpstreamPathTemplate": "/gateway/auth/verify-token",
@@ -66,7 +97,12 @@
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         { "Host": "shorten-url-auth.onrender.com", "Port": 443 }
-      ]
+      ],
+      "QoSOptions": {
+        "ExceptionsAllowedBeforeBreaking": 3,
+        "DurationOfBreak": 30000,
+        "TimeoutValue": 120000
+      }
     },
     {
       "UpstreamPathTemplate": "/gateway/shorten",
@@ -75,7 +111,12 @@
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         { "Host": "shorten-url-shorten.onrender.com", "Port": 443 }
-      ]
+      ],
+      "QoSOptions": {
+        "ExceptionsAllowedBeforeBreaking": 3,
+        "DurationOfBreak": 30000,
+        "TimeoutValue": 120000
+      }
     },
     {
       "UpstreamPathTemplate": "/gateway/crud",
@@ -85,7 +126,12 @@
       "DownstreamHostAndPorts": [
         { "Host": "shorten-url-crud.onrender.com", "Port": 443 }
       ],
-      "AuthenticationOptions": { "AuthenticationProviderKey": "Bearer" }
+      "AuthenticationOptions": { "AuthenticationProviderKey": "Bearer" },
+      "QoSOptions": {
+        "ExceptionsAllowedBeforeBreaking": 3,
+        "DurationOfBreak": 30000,
+        "TimeoutValue": 120000
+      }
     },
     {
       "UpstreamPathTemplate": "/gateway/crud/{id}",
@@ -95,7 +141,12 @@
       "DownstreamHostAndPorts": [
         { "Host": "shorten-url-crud.onrender.com", "Port": 443 }
       ],
-      "AuthenticationOptions": { "AuthenticationProviderKey": "Bearer" }
+      "AuthenticationOptions": { "AuthenticationProviderKey": "Bearer" },
+      "QoSOptions": {
+        "ExceptionsAllowedBeforeBreaking": 3,
+        "DurationOfBreak": 30000,
+        "TimeoutValue": 120000
+      }
     }
   ]
 }
