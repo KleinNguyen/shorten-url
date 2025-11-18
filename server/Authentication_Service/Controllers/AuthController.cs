@@ -267,6 +267,11 @@ namespace Authentication_Service.Controllers
 
             return Ok("Password has been reset successfully. You can now login with your new password.");
         }
+
+        [HttpGet("/api/health")]
+        [AllowAnonymous]
+        public IActionResult Health() => Ok("Service is running");
+
     }
 }
 

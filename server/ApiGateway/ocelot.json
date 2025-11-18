@@ -67,6 +67,15 @@
       ]
     },
     {
+      "UpstreamPathTemplate": "/",
+      "UpstreamHttpMethod": [ "GET", "HEAD" ],
+      "DownstreamPathTemplate": "/api/health",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        { "Host": "shorten-url-auth.onrender.com", "Port": 443 }
+      ]
+    },
+    {
       "UpstreamPathTemplate": "/gateway/shorten",
       "UpstreamHttpMethod": ["Post"],
       "DownstreamPathTemplate": "/api/shorten",
