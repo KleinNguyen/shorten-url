@@ -60,9 +60,13 @@
             },
             "Ocelot": {
               "target": "Package",
-              "version": "[24.0.1, )"
+              "version": "[24.0.0, )"
             },
             "Ocelot.Cache.CacheManager": {
+              "target": "Package",
+              "version": "[24.0.0, )"
+            },
+            "Ocelot.Provider.Polly": {
               "target": "Package",
               "version": "[24.0.0, )"
             },

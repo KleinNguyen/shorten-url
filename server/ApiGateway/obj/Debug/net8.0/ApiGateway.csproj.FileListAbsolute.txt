@@ -71,3 +71,11 @@ C:\Users\Hiiii\Downloads\ShortenURL\server\ApiGateway\obj\Debug\net8.0\refint\Ap
 C:\Users\Hiiii\Downloads\ShortenURL\server\ApiGateway\obj\Debug\net8.0\ApiGateway.pdb
 C:\Users\Hiiii\Downloads\ShortenURL\server\ApiGateway\obj\Debug\net8.0\ApiGateway.genruntimeconfig.cache
 C:\Users\Hiiii\Downloads\ShortenURL\server\ApiGateway\obj\Debug\net8.0\ref\ApiGateway.dll
+D:\Homework\AMD G\amd201-cw\ShortenURL\server\ApiGateway\obj\Debug\net8.0\ApiGateway.csproj.AssemblyReference.cache
+D:\Homework\AMD G\amd201-cw\ShortenURL\server\ApiGateway\obj\Debug\net8.0\ApiGateway.GeneratedMSBuildEditorConfig.editorconfig
+D:\Homework\AMD G\amd201-cw\ShortenURL\server\ApiGateway\obj\Debug\net8.0\ApiGateway.AssemblyInfoInputs.cache
+D:\Homework\AMD G\amd201-cw\ShortenURL\server\ApiGateway\obj\Debug\net8.0\ApiGateway.AssemblyInfo.cs
+D:\Homework\AMD G\amd201-cw\ShortenURL\server\ApiGateway\obj\Debug\net8.0\ApiGateway.csproj.CoreCompileInputs.cache
+D:\Homework\AMD G\amd201-cw\ShortenURL\server\ApiGateway\obj\Debug\net8.0\ApiGateway.MvcApplicationPartsAssemblyInfo.cs
+D:\Homework\AMD G\amd201-cw\ShortenURL\server\ApiGateway\obj\Debug\net8.0\ApiGateway.MvcApplicationPartsAssemblyInfo.cache
+D:\Homework\AMD G\amd201-cw\ShortenURL\server\ApiGateway\obj\Debug\net8.0\ApiGateway.sourcelink.json

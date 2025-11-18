@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "fqy9od9Pcbg=",
+  "dgSpecHash": "u12ruywuKeM=",
   "success": true,
   "projectFilePath": "D:\\Homework\\AMD G\\amd201-cw\\ShortenURL\\server\\ApiGateway\\ApiGateway.csproj",
   "expectedPackageFiles": [
@@ -36,8 +36,11 @@
     "C:\\Users\\huong\\.nuget\\packages\\microsoft.win32.systemevents\\6.0.0\\microsoft.win32.systemevents.6.0.0.nupkg.sha512",
     "C:\\Users\\huong\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512",
     "C:\\Users\\huong\\.nuget\\packages\\newtonsoft.json.bson\\1.0.2\\newtonsoft.json.bson.1.0.2.nupkg.sha512",
-    "C:\\Users\\huong\\.nuget\\packages\\ocelot\\24.0.1\\ocelot.24.0.1.nupkg.sha512",
+    "C:\\Users\\huong\\.nuget\\packages\\ocelot\\24.0.0\\ocelot.24.0.0.nupkg.sha512",
     "C:\\Users\\huong\\.nuget\\packages\\ocelot.cache.cachemanager\\24.0.0\\ocelot.cache.cachemanager.24.0.0.nupkg.sha512",
+    "C:\\Users\\huong\\.nuget\\packages\\ocelot.provider.polly\\24.0.0\\ocelot.provider.polly.24.0.0.nupkg.sha512",
+    "C:\\Users\\huong\\.nuget\\packages\\polly\\8.5.2\\polly.8.5.2.nupkg.sha512",
+    "C:\\Users\\huong\\.nuget\\packages\\polly.core\\8.5.2\\polly.core.8.5.2.nupkg.sha512",
     "C:\\Users\\huong\\.nuget\\packages\\swashbuckle.aspnetcore\\6.6.2\\swashbuckle.aspnetcore.6.6.2.nupkg.sha512",
     "C:\\Users\\huong\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.6.2\\swashbuckle.aspnetcore.swagger.6.6.2.nupkg.sha512",
     "C:\\Users\\huong\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.6.2\\swashbuckle.aspnetcore.swaggergen.6.6.2.nupkg.sha512",

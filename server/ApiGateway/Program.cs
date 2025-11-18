@@ -9,14 +9,11 @@ namespace ApiGateway
 {
     public class Program
     {
-        public static void Main(string[] args)
+        public static async Task Main(string[] args)  
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            
-
             builder.Services.AddControllers();
-            // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
 
             builder.Configuration.AddJsonFile(
@@ -26,26 +23,29 @@ namespace ApiGateway
             );
 
             builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-               .AddJwtBearer("Bearer", options =>
-               {
-                   options.TokenValidationParameters = new TokenValidationParameters
-                   {
-                       ValidateIssuer = true,
-                       ValidateAudience = true,
-                       ValidateLifetime = true,
-                       ValidateIssuerSigningKey = true,
-                       ValidIssuer = builder.Configuration["Jwt:Issuer"],
-                       ValidAudience = builder.Configuration["Jwt:Audience"],
-                       IssuerSigningKey = new SymmetricSecurityKey(
-                           Encoding.UTF8.GetBytes(builder.Configuration["Jwt:SecretKey"]!)
-                       )
-                   };
-               });
+                .AddJwtBearer("Bearer", options =>
+                {
+                    options.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidateIssuer = true,
+                        ValidateAudience = true,
+                        ValidateLifetime = true,
+                        ValidateIssuerSigningKey = true,
+                        ValidIssuer = builder.Configuration["Jwt:Issuer"],
+                        ValidAudience = builder.Configuration["Jwt:Audience"],
+                        IssuerSigningKey = new SymmetricSecurityKey(
+                            Encoding.UTF8.GetBytes(builder.Configuration["Jwt:SecretKey"]!)
+                        )
+                    };
+                });
 
-            builder.Services.AddOcelot(builder.Configuration).AddCacheManager(x =>
-            {
-                x.WithDictionaryHandle();
-            });
+            // ✅ AddPolly() đã có - ĐÚNG!
+            builder.Services.AddOcelot(builder.Configuration)
+                .AddCacheManager(x =>
+                {
+                    x.WithDictionaryHandle();
+                });
+            
             builder.Services.AddSwaggerGen();
 
             builder.Services.AddCors(options =>
@@ -56,31 +56,41 @@ namespace ApiGateway
                         "http://localhost:8080",
                         "https://shorten-url-client-2xgt.onrender.com"
                     ) 
-                          .AllowAnyMethod()
-                          .AllowAnyHeader()
-                          .AllowCredentials(); 
+                        .AllowAnyMethod()
+                        .AllowAnyHeader()
+                        .AllowCredentials(); 
                 });
             });
 
             var app = builder.Build();
 
-          
             if (app.Environment.IsDevelopment())
             {
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
 
-            app.MapGet("/", () => Results.Ok(new { status = "healthy", service = "ApiGateway" }));
+            app.MapGet("/", () => Results.Ok(new 
+            { 
+                status = "healthy", 
+                service = "ApiGateway",
+                timestamp = DateTime.UtcNow
+            }));
+
+            app.MapGet("/health", () => Results.Ok(new 
+            { 
+                status = "healthy",
+                timestamp = DateTime.UtcNow
+            }));
 
             // app.UseHttpsRedirection();
             app.UseCors("AllowVueFrontend");
             app.UseAuthentication(); 
             app.UseAuthorization();
 
-
             app.MapControllers();
-            app.UseOcelot().Wait();
+            
+            await app.UseOcelot();  
 
             app.Run();
         }
