@@ -75,14 +75,17 @@ namespace Url_Crud_Service.Controllers
 
             string oldCode = existing.ShortenCode;
 
-            var baseUrl = Environment.GetEnvironmentVariable("BASE_URL");
+            var baseUrl = Environment.GetEnvironmentVariable("SHORTEN_BASE_URL");
 
             if (string.IsNullOrEmpty(baseUrl))
             {
                 baseUrl = $"{Request.Scheme}://{Request.Host}";
             }
-            existing.ShortenCode = newCode;
-            existing.ShortenUrl = $"{baseUrl}/api/shorten/{newCode}";
+
+            // const string baseUrl = "http://shorten-url-shorten-4a9m.onrender.com";
+            // existing.ShortenUrl = $"{baseUrl}/{newCode}";
+            // existing.ShortenCode = newCode;
+            existing.ShortenUrl = $"{baseUrl}/{newCode}";
 
             _db.Entry(existing).State = EntityState.Modified;
 

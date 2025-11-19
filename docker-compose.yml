@@ -46,7 +46,7 @@ services:
       - RABBITMQ_HOST=rabbitmq
       - RABBITMQ_USERNAME=guest
       - RABBITMQ_PASSWORD=guest
-      - BASE_URL= https://shorten-url-shorten-4a9m.onrender.com   
+      - BASE_URL=https://shorten-url-shorten-4a9m.onrender.com   
     depends_on:
       - sqlserver
       - rabbitmq
@@ -68,7 +68,7 @@ services:
       - RABBITMQ_HOST=rabbitmq
       - RABBITMQ_USERNAME=guest
       - RABBITMQ_PASSWORD=guest
-      - BASE_URL= https://shorten-url-shorten-4a9m.onrender.com   
+      - SHORTEN_BASE_URL=https://shorten-url-shorten-4a9m.onrender.com/api/shorten
     depends_on:
       - sqlserver
       - rabbitmq
