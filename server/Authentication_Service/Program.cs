@@ -61,7 +61,8 @@ namespace Authentication_Service
                         "https://shorten-url-client-7pz2.onrender.com"
                     ) 
                             .AllowAnyMethod()
-                            .AllowAnyHeader();
+                            .AllowAnyHeader()
+                            .AllowCredentials();
                 });
             }); 
 
