@@ -1,6 +1,6 @@
 ﻿{
   "GlobalConfiguration": {
-    "BaseUrl": "https://shorten-url-client-7pz2.onrender.com"
+    "BaseUrl": "https://shorten-url-client-7pz2.onrender.com/gateway"
   },
   "Routes": [
     

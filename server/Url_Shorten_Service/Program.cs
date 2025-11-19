@@ -104,11 +104,6 @@ namespace Url_Shorten_Service
             var app = builder.Build();
             app.ApplyMigrations();
 
-            app.MapGet("/health", () => Results.Ok(new 
-            { 
-                status = "Shorten healthy"
-            }));
-
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {

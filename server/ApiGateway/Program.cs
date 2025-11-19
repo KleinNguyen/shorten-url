@@ -69,9 +69,6 @@ namespace ApiGateway
                 app.UseSwaggerUI();
             }
 
-            app.MapGet("/", () => Results.Ok(new { status = "healthy", service = "ApiGateway" }));
-            app.MapGet("/health", () => Results.Ok(new { status = "Gateway healthy" }));
-
             app.UseCors("AllowVueFrontend");
             app.UseAuthentication(); 
             app.UseAuthorization();

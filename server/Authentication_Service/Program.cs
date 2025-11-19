@@ -68,11 +68,6 @@ namespace Authentication_Service
             var app = builder.Build();
             app.ApplyMigrations();
 
-            app.MapGet("/health", () => Results.Ok(new 
-            { 
-                status = "Authentication healthy"
-            }));
-
             if (app.Environment.IsDevelopment())
             {
                 app.UseSwagger();

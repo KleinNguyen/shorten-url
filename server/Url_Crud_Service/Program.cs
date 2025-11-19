@@ -84,11 +84,6 @@ namespace Url_Crud_Service
             var app = builder.Build();
             app.ApplyMigrations();
 
-            app.MapGet("/health", () => Results.Ok(new 
-            { 
-                status = "Crud healthy"
-            }));
-
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {
