@@ -87,12 +87,6 @@ jobs:
           docker build -t ${{ secrets.DOCKER_USERNAME }}/shortenurl-client:latest -f ./client/Dockerfile .
           docker push ${{ secrets.DOCKER_USERNAME }}/shortenurl-client:latest
 
-      - name: Build & Push RabbitMQ
-        run: |
-          docker pull rabbitmq:3-management
-          docker tag rabbitmq:3-management ${{ secrets.DOCKER_USERNAME }}/rabbitmq:3-management
-          docker push ${{ secrets.DOCKER_USERNAME }}/rabbitmq:3-management
-
       # Trigger Render Deploy
       - name: Trigger All Services Deploy
         run: |
