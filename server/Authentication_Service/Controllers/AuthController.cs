@@ -196,10 +196,7 @@ namespace Authentication_Service.Controllers
             await _context.SaveChangesAsync();
 
 
-            var resetLink = $"https://shorten-url-client-7pz2.onrender.com/reset-password?token={token}&email={user.Email}";
-
-
-
+            var resetLink = $"http://localhost:8080/reset-password?token={token}&email={user.Email}";
 
             await emailService.SendEmailAsync(
                 sendEmailDto.Email,

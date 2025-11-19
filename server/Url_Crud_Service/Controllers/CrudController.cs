@@ -35,7 +35,7 @@ namespace Url_Crud_Service.Controllers
             string email = emailClaim.Value;
 
             var urls = await _db.UrlCruds
-                .Where(u => u.Email == email)
+                .Where(u => u.Email == email)   
                 .OrderByDescending(u => u.DateTime)
                 .ToListAsync();
 
@@ -78,17 +78,29 @@ namespace Url_Crud_Service.Controllers
 
             string oldCode = existing.ShortenCode;
 
+            existing.ShortenCode = newCode;
+
+            //     var baseUrl = Environment.GetEnvironmentVariable("SHORTEN_BASE_URL");
+
+            // if (string.IsNullOrEmpty(baseUrl))
+            // {
+            //     baseUrl = $"{Request.Scheme}://{Request.Host}";
+            // }
+            // const string baseUrl = "http://localhost:2000/api/shorten";
+            // existing.ShortenUrl = $"{baseUrl}/{newCode}";
+            // Kiểm tra biến môi trường SHORTEN_BASE_URL (dùng cho Render)
             var baseUrl = Environment.GetEnvironmentVariable("SHORTEN_BASE_URL");
 
             if (string.IsNullOrEmpty(baseUrl))
             {
-                baseUrl = $"{Request.Scheme}://{Request.Host}";
+                // Không có biến → dùng Docker local
+                baseUrl = "http://localhost:2000/api/shorten";
             }
 
-            // const string baseUrl = "http://shorten-url-shorten-4a9m.onrender.com";
-            // existing.ShortenUrl = $"{baseUrl}/{newCode}";
-            // existing.ShortenCode = newCode;
+            // Gán URL rút gọn
             existing.ShortenUrl = $"{baseUrl}/{newCode}";
+            existing.ShortenCode = newCode;
+
 
             _db.Entry(existing).State = EntityState.Modified;
 

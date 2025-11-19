@@ -1,2 +1,4 @@
 .vs/
 docker-compose.user.yml
+.env
+.env.render
