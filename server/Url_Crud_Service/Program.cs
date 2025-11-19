@@ -70,7 +70,8 @@ namespace Url_Crud_Service
                 options.AddPolicy("AllowVueFrontend", policy =>
                 {
                     policy.WithOrigins("http://localhost:8080",
-                        "https://shorten-url-client-7pz2.onrender.com") 
+                        "https://shorten-url-client-7pz2.onrender.com",
+                        "https://short-url-api-utgu.onrender.com") 
                             .AllowAnyMethod()
                             .AllowAnyHeader().
                             AllowCredentials();
