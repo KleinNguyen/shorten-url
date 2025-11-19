@@ -66,7 +66,7 @@
                 localStorage.removeItem('token');
                 this.currentUser = null;
                 window.dispatchEvent(new Event("storage"));
-                this.$router.push('/signin');
+                this.$router.push('/home');
             }
         }
     };

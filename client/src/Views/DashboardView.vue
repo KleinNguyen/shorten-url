@@ -3,9 +3,10 @@
         <div class="dashboard-container">
             <h1 class="dashboard-header">
                 <span class="title">Dashboard</span>
-                <span class="sub-title" style="font-size: medium">Manage your shortened URLs</span>
+                <span class="sub-title">Manage your shortened URLs</span>
             </h1>
 
+            <!-- Luôn render UrlList -->
             <div class="urls-scroll-box">
                 <UrlList :urls="urls"
                          @delete-url="handleDeleteUrl"
@@ -31,89 +32,115 @@
             };
         },
         async mounted() {
-            try {
-                const fetchedUrls = await getAllLinks();
-                console.log("Loaded URLs from backend:", fetchedUrls);
-                this.urls = fetchedUrls;
-            } catch (err) {
-                console.error("Error loading URLs:", err);
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Oops!',
-                    text: 'Need login to load URLs from server.',
-                    timer: 1500
-                });
-            }
+            await this.loadUrls();
+            // Lắng nghe logout hoặc user thay đổi
+            window.addEventListener("storage", this.handleUserChange);
+        },
+        beforeUnmount() {
+            window.removeEventListener("storage", this.handleUserChange);
         },
         methods: {
+            async loadUrls() {
+                const currentUser = localStorage.getItem("currentUser");
+
+                if (!currentUser || currentUser === "undefined") {
+                    this.urls = [];
+                    // Hiển thị thông báo khi chưa login
+                    Swal.fire({
+                        icon: "warning",
+                        title: "Oops!",
+                        text: "You need to login to see your URL history!",
+                    });
+                    return;
+                }
+
+                try {
+                    const fetchedUrls = await getAllLinks();
+                    this.urls = fetchedUrls;
+                } catch (err) {
+                    console.error("Error loading URLs:", err);
+                    this.urls = [];
+                    Swal.fire({
+                        icon: "warning",
+                        title: "Oops!",
+                        text: "Failed to load your URLs!",
+                    });
+                }
+            },
+
+            handleUserChange() {
+                const user = localStorage.getItem("currentUser");
+                if (!user || user === "undefined") {
+                    // Reset URLs khi logout
+                    this.urls = [];
+                } else {
+                    // Reload URLs nếu user thay đổi
+                    this.loadUrls();
+                }
+            },
+
             async handleDeleteUrl(id) {
                 const result = await Swal.fire({
-                    title: 'Are you sure?',
-                    text: "URL is gonna be deleted forever!",
-                    icon: 'warning',
+                    title: "Are you sure?",
+                    text: "URL will be deleted forever!",
+                    icon: "warning",
                     showCancelButton: true,
-                    confirmButtonColor: '#d33',
-                    cancelButtonColor: '#3085d6',
-                    confirmButtonText: 'Delete',
-                    cancelButtonText: 'Cancel',
+                    confirmButtonColor: "#d33",
+                    cancelButtonColor: "#3085d6",
+                    confirmButtonText: "Delete",
+                    cancelButtonText: "Cancel",
                 });
 
                 if (!result.isConfirmed) return;
 
                 try {
                     await deleteLink(id);
-                    this.urls = this.urls.filter(u => u.id !== id);
+                    this.urls = this.urls.filter((u) => u.id !== id);
 
                     Swal.fire({
-                        icon: 'success',
-                        title: 'Deleted!',
-                        text: 'URL deleted successfully.',
+                        icon: "success",
+                        title: "Deleted!",
+                        text: "URL deleted successfully.",
                         timer: 1500,
-                        showConfirmButton: false
+                        showConfirmButton: false,
                     });
                 } catch (err) {
                     console.error("Error deleting URL:", err);
                     Swal.fire({
-                        icon: 'error',
-                        title: 'Error!',
-                        text: 'Delete URL fail.',
+                        icon: "error",
+                        title: "Error!",
+                        text: "Delete URL failed.",
                     });
                 }
             },
 
             async handleEditUrl(data) {
                 try {
-                    console.log("Sending update request:", data);
-
                     const updated = await updateLink(data.id, data.shortenCode);
-                    console.log("Updated URL response:", updated);
 
-                    const idx = this.urls.findIndex(u => u.id === data.id);
+                    const idx = this.urls.findIndex((u) => u.id === data.id);
                     if (idx !== -1) {
                         this.urls[idx].shortenCode = updated.shortenCode;
                         this.urls[idx].shortenUrl = updated.shortenUrl;
                     }
 
                     Swal.fire({
-                        icon: 'success',
-                        title: 'Updated!',
-                        text: 'Short code is updated.',
+                        icon: "success",
+                        title: "Updated!",
+                        text: "Short code updated successfully.",
                         timer: 1500,
-                        showConfirmButton: false
+                        showConfirmButton: false,
                     });
-
                 } catch (err) {
                     console.error("Error updating URL:", err);
-                    console.log("Backend response data:", err.response?.data);
-                    console.log("Backend status:", err.response?.status);
-                    console.log("Validation errors:", err.response?.data?.errors);
 
-                    const message = err.response?.data?.message
-                        || "Failed to update short code. Check your input.";
+                    const message =
+                        err.response?.data?.message ||
+                        "Failed to update short code. Check your input.";
 
                     Swal.fire({
-                        icon: 'error',
-                        title: 'Error!',
+                        icon: "error",
+                        title: "Error!",
                         text: message,
                     });
                 }
@@ -121,7 +148,6 @@
         },
     };
 </script>
-
 
 <style scoped>
     .dashboard {
@@ -140,7 +166,7 @@
         flex-direction: column;
         align-items: flex-start;
         gap: 0.3rem;
-        font-family: 'Poppins', sans-serif;
+        font-family: "Poppins", sans-serif;
         margin-bottom: 2rem;
         color: #fff;
     }
@@ -178,4 +204,11 @@
             background: rgba(255, 255, 255, 0.3);
             border-radius: 10px;
         }
+
+    .no-urls {
+        text-align: center;
+        color: #fff;
+        font-style: italic;
+        margin-top: 2rem;
+    }
 </style>

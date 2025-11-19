@@ -73,8 +73,8 @@ C:\Users\Hiiii\Downloads\ShortenURL\server\ApiGateway\obj\Debug\net8.0\ApiGatewa
 C:\Users\Hiiii\Downloads\ShortenURL\server\ApiGateway\obj\Debug\net8.0\ref\ApiGateway.dll
 D:\Homework\AMD G\amd201-cw\ShortenURL\server\ApiGateway\bin\Debug\net8.0\appsettings.Development.json
 D:\Homework\AMD G\amd201-cw\ShortenURL\server\ApiGateway\bin\Debug\net8.0\appsettings.json
-D:\Homework\AMD G\amd201-cw\ShortenURL\server\ApiGateway\bin\Debug\net8.0\ApiGateway.staticwebassets.endpoints.json
 D:\Homework\AMD G\amd201-cw\ShortenURL\server\ApiGateway\bin\Debug\net8.0\ocelot.json
+D:\Homework\AMD G\amd201-cw\ShortenURL\server\ApiGateway\bin\Debug\net8.0\ApiGateway.staticwebassets.endpoints.json
 D:\Homework\AMD G\amd201-cw\ShortenURL\server\ApiGateway\bin\Debug\net8.0\ApiGateway.exe
 D:\Homework\AMD G\amd201-cw\ShortenURL\server\ApiGateway\bin\Debug\net8.0\ApiGateway.deps.json
 D:\Homework\AMD G\amd201-cw\ShortenURL\server\ApiGateway\bin\Debug\net8.0\ApiGateway.runtimeconfig.json

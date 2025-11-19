@@ -35,7 +35,7 @@ namespace Url_Crud_Service.Controllers
             string email = emailClaim.Value;
 
             var urls = await _db.UrlCruds
-                .Where(u => u.Email == email)   
+                .Where(u => u.Email == email)
                 .OrderByDescending(u => u.DateTime)
                 .ToListAsync();
 
@@ -65,9 +65,6 @@ namespace Url_Crud_Service.Controllers
             if (string.IsNullOrWhiteSpace(newCode))
                 return BadRequest("Code cannot be empty.");
 
-            if (newCode.Length != 7)
-                return BadRequest(new { Message = "Alias not available. Shorten code must be exactly 7 characters." });
-
             var existing = await _db.UrlCruds.FirstOrDefaultAsync(u => u.Id == id);
             if (existing == null)
                 return NotFound("URL not found.");
@@ -78,9 +75,14 @@ namespace Url_Crud_Service.Controllers
 
             string oldCode = existing.ShortenCode;
 
+            var baseUrl = Environment.GetEnvironmentVariable("BASE_URL");
+
+            if (string.IsNullOrEmpty(baseUrl))
+            {
+                baseUrl = $"{Request.Scheme}://{Request.Host}";
+            }
             existing.ShortenCode = newCode;
-            const string baseUrl = "http://localhost:2000/api/shorten";
-            existing.ShortenUrl = $"{baseUrl}/{newCode}";
+            existing.ShortenUrl = $"{baseUrl}/api/shorten/{newCode}";
 
             _db.Entry(existing).State = EntityState.Modified;
 

@@ -82,6 +82,7 @@
                         timer: 2000,
                         showConfirmButton: false
                     });
+                    this.$router.push("/signin");
 
                     
                     this.name = '';

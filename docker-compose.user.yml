@@ -1,10 +1,8 @@
-﻿
-
 services:
 
   # ============= DATABASE (SQL Server) =================
   sqlserver:
-    image: mcr.microsoft.com/mssql/server:2022-latest
+    image: tuanphamn/mssql-server:2022-latest
     container_name: sqlserver
     environment:
       SA_PASSWORD: "Your_password123"
@@ -18,9 +16,7 @@ services:
 
   # ============= AUTH SERVICE =================
   auth_api:
-    build:
-      context: .
-      dockerfile: server/Authentication_Service/Dockerfile
+    image: tuanphamn/shortenurl-auth_api:latest
     container_name: auth_api
     ports:
       - "1000:8080"
@@ -34,9 +30,7 @@ services:
 
   # ============= URL SHORTEN SERVICE =================
   url_shorten_service:
-    build:
-      context: .
-      dockerfile: server/Url_Shorten_Service/Dockerfile 
+    image: tuanphamn/shortenurl-url_shorten_service:latest
     container_name: url_shorten_service
     ports:
       - "2000:8080"
@@ -46,19 +40,16 @@ services:
       - RABBITMQ_HOST=rabbitmq
       - RABBITMQ_USERNAME=guest
       - RABBITMQ_PASSWORD=guest
-      - BASE_URL= https://shorten-url-shorten-4a9m.onrender.com   
+      - BASE_URL=http://localhost:2000   
     depends_on:
       - sqlserver
       - rabbitmq
     networks:
       - backend
 
-
   # ============= CRUD SERVICE =================
   crud_service:
-    build:
-      context: .
-      dockerfile: server/Url_Crud_Service/Dockerfile
+    image: tuanphamn/shortenurl-crud_service:latest
     container_name: crud_service
     ports:
       - "3000:8080"
@@ -68,21 +59,15 @@ services:
       - RABBITMQ_HOST=rabbitmq
       - RABBITMQ_USERNAME=guest
       - RABBITMQ_PASSWORD=guest
-      - BASE_URL= https://shorten-url-shorten-4a9m.onrender.com   
     depends_on:
       - sqlserver
       - rabbitmq
     networks:
       - backend
 
-
- 
-
-  # ============= API GATEWAY � OCELOT =================
+  # ============= API GATEWAY - OCELOT =================
   gateway:
-    build:
-      context: .
-      dockerfile: server/ApiGateway/Dockerfile
+    image: tuanphamn/shortenurl-gateway:latest
     container_name: gateway
     ports:
       - "8888:8080"
@@ -97,9 +82,7 @@ services:
 
   # ============= FRONTEND VUE =================
   client:
-    build:
-      context: .
-      dockerfile: client/Dockerfile
+    image: tuanphamn/shortenurl-client:latest
     container_name: vue_client
     ports:
       - "8080:80"
@@ -109,7 +92,7 @@ services:
       - backend
 
   rabbitmq:
-    image: rabbitmq:3-management
+    image: tuanphamn/rabbitmq:3-management
     container_name: rabbitmq
     ports:
       - "5672:5672"
@@ -119,7 +102,6 @@ services:
       RABBITMQ_DEFAULT_PASS: guest
     networks:
       - backend
-
 
 # ================= VOLUMES & NETWORKS =================
 volumes:
