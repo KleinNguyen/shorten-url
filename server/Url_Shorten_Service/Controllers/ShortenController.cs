@@ -27,6 +27,19 @@ namespace Url_Shorten_Service.Controllers
             {
                 string? email = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
 
+                if (string.IsNullOrWhiteSpace(dto.OriginalUrl) ||
+                !Uri.TryCreate(dto.OriginalUrl, UriKind.Absolute, out Uri? validatedUri) ||
+                (validatedUri.Scheme != Uri.UriSchemeHttp && validatedUri.Scheme != Uri.UriSchemeHttps))
+                {
+                    return BadRequest(new { Message = "Invalid URL. Please provide a valid HTTP or HTTPS link." });
+                }
+
+
+                if (!string.IsNullOrEmpty(dto.ShortenCode) && dto.ShortenCode.Length != 7)
+                {
+                    return BadRequest(new { Message = "Alias not available. Shorten code must be exactly 7 characters." });
+                }
+
 
                 var baseUrl = Environment.GetEnvironmentVariable("BASE_URL");
                 if (string.IsNullOrEmpty(baseUrl))

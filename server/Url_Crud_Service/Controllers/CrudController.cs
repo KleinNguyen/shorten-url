@@ -65,6 +65,9 @@ namespace Url_Crud_Service.Controllers
             if (string.IsNullOrWhiteSpace(newCode))
                 return BadRequest("Code cannot be empty.");
 
+            if (newCode.Length != 7)
+                return BadRequest(new { Message = "Alias not available. Shorten code must be exactly 7 characters." });
+
             var existing = await _db.UrlCruds.FirstOrDefaultAsync(u => u.Id == id);
             if (existing == null)
                 return NotFound("URL not found.");
