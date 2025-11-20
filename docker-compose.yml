@@ -42,9 +42,9 @@ services:
     environment:
       - ASPNETCORE_URLS=http://+:8080
       - ConnectionStrings__Database=Server=sqlserver;Database=UrlDB;User Id=sa;Password=Your_password123;TrustServerCertificate=True;
-      - RABBITMQ_HOST=rabbitmq
-      - RABBITMQ_USERNAME=guest
-      - RABBITMQ_PASSWORD=guest
+      - RABBITMQ_HOST=fuji.lmq.cloudamqp.com
+      - RABBITMQ_USERNAME=ioitvvgk
+      - RABBITMQ_PASSWORD=VzJoVb6iTESpEXfATJ5oNh9PcjVw1Vmu
       - BASE_URL=http://localhost:2000
     depends_on:
       - sqlserver
@@ -64,9 +64,9 @@ services:
     environment:
       - ASPNETCORE_URLS=http://+:8080
       - ConnectionStrings__Database=Server=sqlserver;Database=CrudDB;User Id=sa;Password=Your_password123;TrustServerCertificate=True;
-      - RABBITMQ_HOST=rabbitmq
-      - RABBITMQ_USERNAME=guest
-      - RABBITMQ_PASSWORD=guest
+      - RABBITMQ_HOST=fuji.lmq.cloudamqp.com
+      - RABBITMQ_USERNAME=ioitvvgk
+      - RABBITMQ_PASSWORD=VzJoVb6iTESpEXfATJ5oNh9PcjVw1Vmu
     depends_on:
       - sqlserver
       - rabbitmq
@@ -118,8 +118,8 @@ services:
       - "5672:5672"
       - "15672:15672"
     environment:
-      RABBITMQ_DEFAULT_USER: guest
-      RABBITMQ_DEFAULT_PASS: guest
+      RABBITMQ_DEFAULT_USER: ioitvvgk
+      RABBITMQ_DEFAULT_PASS: VzJoVb6iTESpEXfATJ5oNh9PcjVw1Vmu
     networks:
       - backend
 
