@@ -80,24 +80,12 @@ namespace Url_Crud_Service.Controllers
 
             existing.ShortenCode = newCode;
 
-            //     var baseUrl = Environment.GetEnvironmentVariable("SHORTEN_BASE_URL");
-
-            // if (string.IsNullOrEmpty(baseUrl))
-            // {
-            //     baseUrl = $"{Request.Scheme}://{Request.Host}";
-            // }
-            // const string baseUrl = "http://localhost:2000/api/shorten";
-            // existing.ShortenUrl = $"{baseUrl}/{newCode}";
-            // Kiểm tra biến môi trường SHORTEN_BASE_URL (dùng cho Render)
             var baseUrl = Environment.GetEnvironmentVariable("SHORTEN_BASE_URL");
 
             if (string.IsNullOrEmpty(baseUrl))
             {
-                // Không có biến → dùng Docker local
                 baseUrl = "http://localhost:2000/api/shorten";
             }
-
-            // Gán URL rút gọn
             existing.ShortenUrl = $"{baseUrl}/{newCode}";
             existing.ShortenCode = newCode;
 

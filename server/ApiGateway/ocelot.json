@@ -124,6 +124,39 @@
         }
       ],
       "AuthenticationOptions": { "AuthenticationProviderKey": "Bearer" }
+    },
+    {
+      "UpstreamPathTemplate": "/gateway/auth/health",
+      "UpstreamHttpMethod": ["GET"],
+      "DownstreamPathTemplate": "/api/auth/health",
+      "DownstreamScheme": "${DOWNSTREAM_SCHEME}",
+      "DownstreamHostAndPorts": [ 
+        { "Host": "${AUTH_SERVICE_HOST}", 
+        "Port": "${AUTH_SERVICE_PORT}"
+        } 
+      ]
+    },
+    {
+      "UpstreamPathTemplate": "/gateway/shorten/health",
+      "UpstreamHttpMethod": ["GET"],
+      "DownstreamPathTemplate": "/api/shorten/health",
+      "DownstreamScheme": "${DOWNSTREAM_SCHEME}",
+      "DownstreamHostAndPorts": [ 
+        { "Host": "${SHORTEN_SERVICE_HOST}", 
+        "Port": "${SHORTEN_SERVICE_PORT}" 
+        } 
+      ]
+    },
+    {
+      "UpstreamPathTemplate": "/gateway/crud/health",
+      "UpstreamHttpMethod": ["GET"],
+      "DownstreamPathTemplate": "/api/crud/health",
+      "DownstreamScheme": "${DOWNSTREAM_SCHEME}",
+      "DownstreamHostAndPorts": [ 
+        { "Host": "${CRUD_SERVICE_HOST}", 
+        "Port": "${CRUD_SERVICE_PORT}" 
+        } 
+      ]
     }
   ]
 }

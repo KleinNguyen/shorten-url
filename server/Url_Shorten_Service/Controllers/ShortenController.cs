@@ -46,8 +46,6 @@ namespace Url_Shorten_Service.Controllers
                 {
                     baseUrl = $"{Request.Scheme}://{Request.Host}";
                 }
-
-                // Gọi service
                 var result = await _service.SendShortUrl(dto, baseUrl, email);
 
                 return Ok(new

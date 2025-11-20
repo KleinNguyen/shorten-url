@@ -48,9 +48,6 @@ namespace Authentication_Service
                     )
                 };
             });
-
-
-
             builder.Services.AddAuthorization();
             builder.Services.AddScoped<Services.EmailService>();
             builder.Services.AddCors(options =>

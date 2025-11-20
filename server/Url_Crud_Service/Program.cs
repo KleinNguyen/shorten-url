@@ -64,7 +64,6 @@ namespace Url_Crud_Service
                 });
             });
 
-            // Add services to the container.
             builder.Services.AddCors(options =>
             {
                 options.AddPolicy("AllowVueFrontend", policy =>

@@ -66,12 +66,12 @@ namespace Authentication_Service.Controllers
             var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == loginDto.Email);
             if (user == null)
             {
-                return NotFound("Người dùng không tồn tại!"); 
+                return NotFound("User not found!"); 
             }
 
             if (!BC.Verify(loginDto.Password, user.PasswordHash))
             {
-                return Unauthorized("Mật khẩu không đúng!"); 
+                return Unauthorized("Password is incorrect!"); 
             }
 
             var tokenHandler = new JwtSecurityTokenHandler();

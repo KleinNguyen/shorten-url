@@ -16,20 +16,12 @@ namespace Url_Shorten_Service
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
-            // builder.Services.AddDbContext<ShortenDbContext>(options =>
-            // options.UseNpgsql(
-            // builder.Configuration.GetConnectionString("UrlShortenDbConnection"),
-            // npgsqlOptions => npgsqlOptions.EnableRetryOnFailure(
-            // maxRetryCount: 5,                     // số lần retry
-            // maxRetryDelay: TimeSpan.FromSeconds(10), // delay tối đa giữa các lần retry
-            // errorCodesToAdd: null)));
             builder.Services.AddDbContext<ShortenDbContext>(options =>
             options.UseSqlServer(builder.Configuration.GetConnectionString("UrlShortenDbConnection"),
             sqlServerOptions => sqlServerOptions.EnableRetryOnFailure(
             maxRetryCount: 5,                     
             maxRetryDelay: TimeSpan.FromSeconds(10), 
             errorNumbersToAdd: null)));
-
 
             builder.Services.AddScoped<SendUrlService>();
 
@@ -87,25 +79,18 @@ namespace Url_Shorten_Service
                 options.AddPolicy("AllowVueFrontend", policy =>
                 {
                     policy.WithOrigins("http://localhost:8080",
-                        "https://shorten-url-client-7pz2.onrender.com","https://short-url-api-utgu.onrender.com") // Vue dev server
+                        "https://shorten-url-client-7pz2.onrender.com","https://short-url-api-utgu.onrender.com") 
                             .AllowAnyMethod()
                             .AllowAnyHeader()
                             .AllowCredentials();
                 });
             });
-
-
-            // Add services to the container.
-
             builder.Services.AddControllers();
-            // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
             var app = builder.Build();
             app.ApplyMigrations();
-
-            // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {
                 app.UseSwagger();
