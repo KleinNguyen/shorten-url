@@ -20,7 +20,7 @@ namespace Url_Shorten_Service.Services
             _context = context;
             _publishEndpoint = publishEndpoint;
         }
-        public async Task<UrlShorten> GetShortUrlByCode(string code)
+        public async Task<UrlShorten?> GetShortUrlByCode(string code)
         {
             return await _context.UrlShortenes.FirstOrDefaultAsync(u => u.ShortenCode == code);
         }

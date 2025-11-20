@@ -6,8 +6,9 @@ namespace Url_Shorten_Service.Models
     {
         public int Id { get; set; }
         public string? Email { get; set; }
+        [Required]
         public string OriginalUrl { get; set; }
-        public string ShortenCode { get; set; }
+        public string? ShortenCode { get; set; }
         public DateTime DateTime { get; set; }
     }
 }

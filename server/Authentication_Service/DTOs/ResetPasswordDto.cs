@@ -8,10 +8,10 @@ namespace Authentication_Service.DTOs
         public string Email { get; set; } = string.Empty;
         [Required]
         [MinLength(6)]
-        public string NewPassword { get; set; }
+        public required string NewPassword { get; set; }
         [Required]
         [MinLength(6)]
-        public string ConfirmPassword { get; set; }
+        public required string ConfirmPassword { get; set; }
 
     }
 }

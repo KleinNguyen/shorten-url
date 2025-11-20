@@ -4,9 +4,10 @@
     {
         public int Id { get; set; }
         public string? Email { get; set; }
-        public string OriginalUrl { get; set; }
-        public string ShortenUrl { get; set; }
-        public string ShortenCode { get; set; }
+        public string? OriginalUrl { get; set; }
+        public string? ShortenUrl { get; set; }
+
+        public string? ShortenCode { get; set; }
         public DateTime DateTime { get; set; }
     }
 }

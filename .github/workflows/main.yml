@@ -88,10 +88,10 @@ jobs:
           docker push ${{ secrets.DOCKER_USERNAME }}/shortenurl-client:latest
 
       # Trigger Render Deploy
-      - name: Trigger All Services Deploy
-        run: |
-          curl -X POST ${{ secrets.RENDER_APIGATEWAY_HOOK }}
-          curl -X POST ${{ secrets.RENDER_AUTH_HOOK }}
-          curl -X POST ${{ secrets.RENDER_URLCRUD_HOOK }}
-          curl -X POST ${{ secrets.RENDER_URLSHORTEN_HOOK }}
-          curl -X POST ${{ secrets.RENDER_CLIENT_HOOK }}
+      # - name: Trigger All Services Deploy
+      #   run: |
+      #     curl -X POST ${{ secrets.RENDER_APIGATEWAY_HOOK }}
+      #     curl -X POST ${{ secrets.RENDER_AUTH_HOOK }}
+      #     curl -X POST ${{ secrets.RENDER_URLCRUD_HOOK }}
+      #     curl -X POST ${{ secrets.RENDER_URLSHORTEN_HOOK }}
+      #     curl -X POST ${{ secrets.RENDER_CLIENT_HOOK }}

@@ -1,6 +1,5 @@
 ﻿using MassTransit;
 using Url_Shorten_Service.Data;
-using MassTransit;
 using Shareds_Events;
 using Microsoft.EntityFrameworkCore;
 
