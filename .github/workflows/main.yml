@@ -12,6 +12,7 @@ jobs:
     strategy:
       matrix:
         service: [ApiGateway, Authentication_Service, Url_Crud_Service, Url_Shorten_Service]
+        test: [Authentication_Service, Url_Crud_Service, Url_Shorten_Service]
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -26,6 +27,10 @@ jobs:
           cd server/${{ matrix.service }}
           dotnet restore
           dotnet build --configuration Release
+      - name: Run Unit Tests ${{ matrix.test }}
+        run: |
+          cd server/${{ matrix.test }}
+          dotnet test --no-build --verbosity normal
 
   build_client:
     runs-on: ubuntu-latest
