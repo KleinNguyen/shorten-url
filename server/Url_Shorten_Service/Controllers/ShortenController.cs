@@ -74,5 +74,11 @@ namespace Url_Shorten_Service.Controllers
             return Redirect(shortUrl.OriginalUrl);
         }
 
+        [HttpGet("/health")]
+        [AllowAnonymous]
+        public IActionResult HealthCheck()
+        {
+            return Ok(new { status = "healthy", timestamp = DateTime.UtcNow });
+        }
     }
 }

@@ -12,7 +12,6 @@ using System.Text;
 using Authentication_Service.Services;
 using BC = BCrypt.Net.BCrypt;
 
-
 namespace Authentication_Service.Controllers
 {
     [Route("api/[controller]")]
@@ -21,7 +20,6 @@ namespace Authentication_Service.Controllers
     {
         private readonly AuthenticationDbContext _context;
         private readonly IConfiguration _configuration;
-
         public AuthController(AuthenticationDbContext context, IConfiguration configuration)
         {
             _context = context;
@@ -39,10 +37,8 @@ namespace Authentication_Service.Controllers
                     u.Email
                 })
                 .ToListAsync();
-
             return Ok(users);
         }
-
 
         [HttpPost("register")]
         public async Task<IActionResult> Register(UserRegisterDto registerDto)
@@ -60,7 +56,6 @@ namespace Authentication_Service.Controllers
             };
             _context.Users.Add(user);
             await _context.SaveChangesAsync();
-
             return StatusCode(201, "Account registered successfully!");
         }
         [HttpPost("login")]
@@ -98,7 +93,6 @@ namespace Authentication_Service.Controllers
                 Audience = _configuration["Jwt:Audience"],
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
             };
-
             var token = tokenHandler.CreateToken(tokenDescriptor);
             var tokenString = tokenHandler.WriteToken(token);
 
@@ -122,37 +116,28 @@ namespace Authentication_Service.Controllers
             var user = await _context.Users.FindAsync(id);
             if (user == null)
                 return NotFound("User not found.");
-
             if (!string.IsNullOrWhiteSpace(updateDto.Email))
             {
                 if (await _context.Users.AnyAsync(u => u.Email == updateDto.Email && u.Id != id))
                     return BadRequest("Email already in use by another account.");
-
                 user.Email = updateDto.Email;
             }
-
-
             if (!string.IsNullOrWhiteSpace(updateDto.UserName))
             {
                 user.UserName = updateDto.UserName;
-            }
-            else
+            } else
             {
                 user.UserName = user.UserName;
             }
-
             if (!string.IsNullOrWhiteSpace(updateDto.Email))
             {
                 user.Email = updateDto.Email;
-            }
-            else
+            } else
             {
                 user.Email = user.Email;
             }
-
             _context.Users.Update(user);
             await _context.SaveChangesAsync();
-
             return Ok(new
             {
                 Message = "Account updated successfully.",
@@ -162,7 +147,6 @@ namespace Authentication_Service.Controllers
             });
         }
 
-
         [HttpDelete("{id}")]
         [AllowAnonymous]
         public async Task<IActionResult> DeleteUser(int id)
@@ -170,10 +154,8 @@ namespace Authentication_Service.Controllers
             var user = await _context.Users.FindAsync(id);
             if (user == null)
                 return NotFound("User not found.");
-
             _context.Users.Remove(user);
             await _context.SaveChangesAsync();
-
             return Ok("Account deleted successfully.");
         }
 
@@ -184,31 +166,23 @@ namespace Authentication_Service.Controllers
             var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == sendEmailDto.Email);
             if (user == null)
                 return BadRequest("Email not found.");
-
-
             var token = Convert.ToBase64String(RandomNumberGenerator.GetBytes(32))
                 .Replace("+", "").Replace("/", "").Replace("=", ""); 
-
             user.ResetToken = token;
             user.ResetTokenExpiry = DateTime.UtcNow.AddMinutes(30); 
             user.ResetTokenVerified = false;
-
             await _context.SaveChangesAsync();
-
-
             var resetLink = $"http://localhost:8080/reset-password?token={token}&email={user.Email}";
 
             await emailService.SendEmailAsync(
                 sendEmailDto.Email,
                 "Password Reset Request",
                 $@"Hello {user.UserName},
-
                 You requested to reset your password. Click the link below to verify your email and reset your password:{resetLink}
                 This link will expire in 30 minutes.");
 
             return Ok("A password reset link has been sent to your email.");
         }
-
 
         [HttpGet("verify-token")]
         [AllowAnonymous]
@@ -216,31 +190,20 @@ namespace Authentication_Service.Controllers
         {
             if (string.IsNullOrWhiteSpace(token))
                 return BadRequest(new { success = false, message = "Invalid token." });
-
             var user = await _context.Users.FirstOrDefaultAsync(u => u.ResetToken == token);
-
             if (user == null)
                 return BadRequest(new { success = false, message = "Invalid token." });
-
             if (user.ResetTokenExpiry < DateTime.UtcNow)
                 return BadRequest(new { success = false, message = "Token has expired. Please request a new password reset." });
-
             user.ResetTokenVerified = true;
             await _context.SaveChangesAsync();
-
             return Ok(new { success = true, message = "Email verified successfully. You can now reset your password.", token = token });
-
-
-
         }
-
 
         [HttpPost("reset-password")]
         [AllowAnonymous]
         public async Task<IActionResult> ResetPassword(ResetPasswordDto resetPasswordDto)
         {
-
-
             var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == resetPasswordDto.Email);
 
             if (user == null)
@@ -263,6 +226,13 @@ namespace Authentication_Service.Controllers
             await _context.SaveChangesAsync();
 
             return Ok("Password has been reset successfully. You can now login with your new password.");
+        }
+
+        [HttpGet("/health")]
+        [AllowAnonymous]
+        public IActionResult HealthCheck()
+        {
+            return Ok(new { status = "healthy", timestamp = DateTime.UtcNow });
         }
     }
 }

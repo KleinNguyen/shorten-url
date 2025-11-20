@@ -107,8 +107,6 @@ namespace Url_Crud_Service.Controllers
             try
             {
                 await _db.SaveChangesAsync();
-
-
                 await _publishEndpoint.Publish(new UrlUpdateEvent
                 {
                     Id = existing.Id,
@@ -124,7 +122,6 @@ namespace Url_Crud_Service.Controllers
                     return NotFound("URL no longer exists.");
                 throw;
             }
-
             return Ok(new
             {
                 existing.Id,
@@ -140,19 +137,22 @@ namespace Url_Crud_Service.Controllers
             var url = await _db.UrlCruds.FirstOrDefaultAsync(u => u.Id == id);
             if (url == null)
                 return NotFound("URL not found");
-
             _db.UrlCruds.Remove(url);
             await _db.SaveChangesAsync();
-
-
             await _publishEndpoint.Publish(new UrlDeleteEvent
             {
                 Id = id,
                 ShortenCode = url.ShortenCode,
                 SourceService = "UrlCrud"
             });
-
             return Ok($"Deleted URL with ID {id}");
+        }
+
+        [HttpGet("/health")]
+        [AllowAnonymous]
+        public IActionResult HealthCheck()
+        {
+            return Ok(new { status = "healthy", timestamp = DateTime.UtcNow });
         }
     }
 }
