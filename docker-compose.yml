@@ -67,6 +67,7 @@ services:
       - RABBITMQ_HOST=fuji.lmq.cloudamqp.com
       - RABBITMQ_USERNAME=ioitvvgk
       - RABBITMQ_PASSWORD=VzJoVb6iTESpEXfATJ5oNh9PcjVw1Vmu
+      - SHORTEN_BASE_URL=http://localhost:2000/api/shorten
     depends_on:
       - sqlserver
       - rabbitmq

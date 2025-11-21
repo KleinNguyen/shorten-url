@@ -97,8 +97,6 @@ namespace Url_Crud_Service
             app.UseAuthentication();
 
             app.UseAuthorization();
-
-
             app.MapControllers();
 
             app.Run();
