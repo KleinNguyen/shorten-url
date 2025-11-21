@@ -18,8 +18,8 @@ namespace Url_Crud_Service
             builder.Services.AddDbContext<CrudDbContext>(options =>
                 options.UseSqlServer(builder.Configuration.GetConnectionString("UrlCrudDbConnection"),
                 sqlServerOptions => sqlServerOptions.EnableRetryOnFailure(
-                maxRetryCount: 5,                     // số lần retry
-                maxRetryDelay: TimeSpan.FromSeconds(10), // delay tối đa giữa các lần retry
+                maxRetryCount: 5,                     
+                maxRetryDelay: TimeSpan.FromSeconds(10), 
                 errorNumbersToAdd: null)));
 
             builder.Services.AddAuthentication(options =>
@@ -78,14 +78,12 @@ namespace Url_Crud_Service
             });
 
             builder.Services.AddControllers();
-            // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
             var app = builder.Build();
             app.ApplyMigrations();
 
-            // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {
                 app.UseSwagger();

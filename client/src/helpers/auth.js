@@ -1,13 +1,10 @@
 ﻿import api from "./api.js";
 
-
-//register
 export const register = async (data) => {
     const res = await api.post("/auth/register", data);
     return res.data
 }
 
-// login
 export const login = async (data) => {
     const res = await api.post("/auth/login", data);
     const token = res.data.token;
@@ -18,7 +15,6 @@ export const login = async (data) => {
     return res.data;
 };
 
-// send email
 export const sendEmail = async (data) => {
     const res = await api.post("/auth/send-email", data);
     return res.data;
@@ -29,7 +25,6 @@ export const verifyToken = async (token) => {
     return res.data;
 };
 
-// Đặt lại mật khẩu
 export const resetPassword = async (data) => {
     const res = await api.post("/auth/reset-password", data);
     return res.data;
@@ -43,7 +38,6 @@ export const updateAccount = async (data) => {
     return res.data;
 };
 
-// Deactivate account
 export const deactivateAccount = async () => {
     const currentUser = JSON.parse(localStorage.getItem("currentUser"));
     if (!currentUser) throw new Error("User not logged in");

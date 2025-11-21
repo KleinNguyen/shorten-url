@@ -6,11 +6,10 @@
                 <span class="sub-title">Manage your shortened URLs</span>
             </h1>
 
-            <!-- Luôn render UrlList -->
             <div class="urls-scroll-box">
                 <UrlList :urls="urls"
-                         @delete-url="handleDeleteUrl"
-                         @edit-url="handleEditUrl" />
+                            @delete-url="handleDeleteUrl"
+                            @edit-url="handleEditUrl" />
             </div>
 
         </div>
@@ -33,7 +32,6 @@
         },
         async mounted() {
             await this.loadUrls();
-            // Lắng nghe logout hoặc user thay đổi
             window.addEventListener("storage", this.handleUserChange);
         },
         beforeUnmount() {
@@ -45,7 +43,6 @@
 
                 if (!currentUser || currentUser === "undefined") {
                     this.urls = [];
-                    // Hiển thị thông báo khi chưa login
                     Swal.fire({
                         icon: "warning",
                         title: "Oops!",
@@ -71,10 +68,8 @@
             handleUserChange() {
                 const user = localStorage.getItem("currentUser");
                 if (!user || user === "undefined") {
-                    // Reset URLs khi logout
                     this.urls = [];
                 } else {
-                    // Reload URLs nếu user thay đổi
                     this.loadUrls();
                 }
             },
