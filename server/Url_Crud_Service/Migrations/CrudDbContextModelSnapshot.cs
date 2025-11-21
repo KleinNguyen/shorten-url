@@ -37,15 +37,12 @@ namespace Url_Crud_Service.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("OriginalUrl")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ShortenCode")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ShortenUrl")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");

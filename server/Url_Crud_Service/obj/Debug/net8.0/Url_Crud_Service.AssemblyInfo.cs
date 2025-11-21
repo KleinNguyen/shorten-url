@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Url_Crud_Service")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2d0ecc3c9952038674d8e5b274b7d2d7473fe90b")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+93799ef8c083f9c2d5df1b210b3f15a81c262732")]
 [assembly: System.Reflection.AssemblyProductAttribute("Url_Crud_Service")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Url_Crud_Service")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -3,17 +3,20 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using Url_Shorten_Service.Data;
+using Url_Crud_Service.Data;
 
 #nullable disable
 
-namespace Url_Shorten_Service.Migrations
+namespace Url_Crud_Service.Migrations
 {
-    [DbContext(typeof(ShortenDbContext))]
-    partial class ShortenDbContextModelSnapshot : ModelSnapshot
+    [DbContext(typeof(CrudDbContext))]
+    [Migration("20251121075611_AddPendingChanges")]
+    partial class AddPendingChanges
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -22,7 +25,7 @@ namespace Url_Shorten_Service.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("Url_Shorten_Service.Models.UrlShorten", b =>
+            modelBuilder.Entity("Url_Crud_Service.Models.UrlCrud", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -37,15 +40,17 @@ namespace Url_Shorten_Service.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("OriginalUrl")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ShortenCode")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("ShortenUrl")
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("Id");
 
-                    b.ToTable("UrlShortenes");
+                    b.ToTable("UrlCruds");
                 });
 #pragma warning restore 612, 618
         }
