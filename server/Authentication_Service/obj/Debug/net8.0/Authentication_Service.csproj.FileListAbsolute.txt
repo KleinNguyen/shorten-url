@@ -421,3 +421,10 @@ D:\Homework\AMD G\amd201-cw\ShortenURL\server\Authentication_Service\obj\Debug\n
 D:\Homework\AMD G\amd201-cw\ShortenURL\server\Authentication_Service\obj\Debug\net8.0\Authentication_Service.pdb
 D:\Homework\AMD G\amd201-cw\ShortenURL\server\Authentication_Service\obj\Debug\net8.0\Authentication_Service.genruntimeconfig.cache
 D:\Homework\AMD G\amd201-cw\ShortenURL\server\Authentication_Service\obj\Debug\net8.0\ref\Authentication_Service.dll
+D:\Homework\AMD G\amd201-cw\ShortenURL\server\Authentication_Service\bin\Debug\net8.0\.msCoverageSourceRootsMapping_Authentication_Service
+D:\Homework\AMD G\amd201-cw\ShortenURL\server\Authentication_Service\bin\Debug\net8.0\MassTransit.dll
+D:\Homework\AMD G\amd201-cw\ShortenURL\server\Authentication_Service\bin\Debug\net8.0\MassTransit.Abstractions.dll
+D:\Homework\AMD G\amd201-cw\ShortenURL\server\Authentication_Service\bin\Debug\net8.0\MassTransit.RabbitMqTransport.dll
+D:\Homework\AMD G\amd201-cw\ShortenURL\server\Authentication_Service\bin\Debug\net8.0\RabbitMQ.Client.dll
+D:\Homework\AMD G\amd201-cw\ShortenURL\server\Authentication_Service\bin\Debug\net8.0\Shareds_Events.dll
+D:\Homework\AMD G\amd201-cw\ShortenURL\server\Authentication_Service\bin\Debug\net8.0\Shareds_Events.pdb

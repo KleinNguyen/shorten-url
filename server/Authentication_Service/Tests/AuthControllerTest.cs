@@ -8,6 +8,7 @@ using Authentication_Service.Controllers;
 using Authentication_Service.DTOs;
 using Authentication_Service.Models;
 using Authentication_Service.Services;
+using MassTransit;
 using BC = BCrypt.Net.BCrypt;
 
 namespace Authentication_Service.Tests
@@ -31,12 +32,18 @@ namespace Authentication_Service.Tests
             return configMock.Object;
         }
 
+        private AuthController CreateController(AuthenticationDbContext context)
+        {
+            var config = GetMockConfiguration();
+            var publish = new Mock<IPublishEndpoint>(); 
+            return new AuthController(context, config, publish.Object);
+        }
+
         [Fact]
         public async Task GetAllUsers_ShouldReturnAllUsers()
         {
             var context = GetInMemoryDbContext();
-            var configuration = GetMockConfiguration();
-            var controller = new AuthController(context, configuration);
+            var controller = CreateController(context);
 
             var user1 = new User { UserName = "user1", Email = "user1@example.com", PasswordHash = BC.HashPassword("password123") };
             var user2 = new User { UserName = "user2", Email = "user2@example.com", PasswordHash = BC.HashPassword("password456") };
@@ -47,17 +54,22 @@ namespace Authentication_Service.Tests
 
             var result = await controller.GetAllUsers();
             var okResult = Assert.IsType<OkObjectResult>(result);
-            Assert.NotNull(okResult.Value!); // ! để loại bỏ warning
+            Assert.NotNull(okResult.Value);
         }
 
         [Fact]
         public async Task Register_WithNewUser_ShouldCreateUserSuccessfully()
         {
             var context = GetInMemoryDbContext();
-            var configuration = GetMockConfiguration();
-            var controller = new AuthController(context, configuration);
+            var controller = CreateController(context);
 
-            var registerDto = new UserRegisterDto { UserName = "newuser", Email = "newuser@example.com", Password = "securePassword123" };
+            var registerDto = new UserRegisterDto
+            {
+                UserName = "newuser",
+                Email = "newuser@example.com",
+                Password = "securePassword123"
+            };
+
             var result = await controller.Register(registerDto);
 
             var statusResult = Assert.IsType<ObjectResult>(result);
@@ -72,8 +84,7 @@ namespace Authentication_Service.Tests
         public async Task Register_WithExistingEmail_ShouldReturnBadRequest()
         {
             var context = GetInMemoryDbContext();
-            var configuration = GetMockConfiguration();
-            var controller = new AuthController(context, configuration);
+            var controller = CreateController(context);
 
             var existingUser = new User { UserName = "existing", Email = "existing@example.com", PasswordHash = BC.HashPassword("password123") };
             context.Users.Add(existingUser);
@@ -83,15 +94,14 @@ namespace Authentication_Service.Tests
             var result = await controller.Register(registerDto);
 
             var badRequest = Assert.IsType<BadRequestObjectResult>(result);
-            Assert.Contains("already exists", badRequest.Value!.ToString()); // !
+            Assert.Contains("already exists", badRequest.Value!.ToString());
         }
 
         [Fact]
         public async Task Login_WithValidCredentials_ShouldReturnToken()
         {
             var context = GetInMemoryDbContext();
-            var configuration = GetMockConfiguration();
-            var controller = new AuthController(context, configuration);
+            var controller = CreateController(context);
 
             var password = "correctPassword123";
             var user = new User { UserName = "testuser", Email = "test@example.com", PasswordHash = BC.HashPassword(password) };
@@ -102,8 +112,8 @@ namespace Authentication_Service.Tests
             var result = await controller.Login(loginDto);
 
             var actionResult = Assert.IsType<ActionResult<TokenDto>>(result);
-            var okResult = Assert.IsType<OkObjectResult>(actionResult.Result!); // !
-            Assert.NotNull(okResult.Value!); // !
+            var okResult = Assert.IsType<OkObjectResult>(actionResult.Result!);
+            Assert.NotNull(okResult.Value);
             Assert.Contains("token", okResult.Value!.ToString());
         }
 
@@ -111,23 +121,21 @@ namespace Authentication_Service.Tests
         public async Task Login_WithInvalidEmail_ShouldReturnNotFound()
         {
             var context = GetInMemoryDbContext();
-            var configuration = GetMockConfiguration();
-            var controller = new AuthController(context, configuration);
+            var controller = CreateController(context);
 
             var loginDto = new UserLoginDto { Email = "nonexistent@example.com", Password = "anypassword" };
             var result = await controller.Login(loginDto);
 
             var actionResult = Assert.IsType<ActionResult<TokenDto>>(result);
-            var notFoundResult = Assert.IsType<NotFoundObjectResult>(actionResult.Result!); // !
-            Assert.Contains("not found", notFoundResult.Value!.ToString()); // !
+            var notFoundResult = Assert.IsType<NotFoundObjectResult>(actionResult.Result!);
+            Assert.Contains("not found", notFoundResult.Value!.ToString());
         }
 
         [Fact]
         public async Task Login_WithWrongPassword_ShouldReturnUnauthorized()
         {
             var context = GetInMemoryDbContext();
-            var configuration = GetMockConfiguration();
-            var controller = new AuthController(context, configuration);
+            var controller = CreateController(context);
 
             var user = new User { UserName = "testuser", Email = "test@example.com", PasswordHash = BC.HashPassword("correctPassword123") };
             context.Users.Add(user);
@@ -137,8 +145,8 @@ namespace Authentication_Service.Tests
             var result = await controller.Login(loginDto);
 
             var actionResult = Assert.IsType<ActionResult<TokenDto>>(result);
-            var unauthorizedResult = Assert.IsType<UnauthorizedObjectResult>(actionResult.Result!); // !
-            Assert.Contains("incorrect", unauthorizedResult.Value!.ToString()); // !
+            var unauthorizedResult = Assert.IsType<UnauthorizedObjectResult>(actionResult.Result!);
+            Assert.Contains("incorrect", unauthorizedResult.Value!.ToString());
         }
     }
 }

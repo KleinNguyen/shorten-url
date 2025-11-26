@@ -9,6 +9,8 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
+using MassTransit;
+using Shareds_Events;
 using Authentication_Service.Services;
 using BC = BCrypt.Net.BCrypt;
 
@@ -20,10 +22,12 @@ namespace Authentication_Service.Controllers
     {
         private readonly AuthenticationDbContext _context;
         private readonly IConfiguration _configuration;
-        public AuthController(AuthenticationDbContext context, IConfiguration configuration)
+         private readonly IPublishEndpoint _publish;
+        public AuthController(AuthenticationDbContext context, IConfiguration configuration, IPublishEndpoint publish)
         {
             _context = context;
             _configuration = configuration;
+              _publish = publish;
         }
 
         [HttpGet]
@@ -58,31 +62,28 @@ namespace Authentication_Service.Controllers
             await _context.SaveChangesAsync();
             return StatusCode(201, "Account registered successfully!");
         }
+
         [HttpPost("login")]
         [AllowAnonymous]
-
         public async Task<ActionResult<TokenDto>> Login(UserLoginDto loginDto)
         {
             var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == loginDto.Email);
             if (user == null)
-            {
-                return NotFound("User not found!"); 
-            }
+                return NotFound("User not found!");
 
             if (!BC.Verify(loginDto.Password, user.PasswordHash))
-            {
-                return Unauthorized("Password is incorrect!"); 
-            }
+                return Unauthorized("Password is incorrect!");
+
 
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.UTF8.GetBytes(_configuration["Jwt:SecretKey"]!);
+
             var claims = new List<Claim>
             {
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
                 new Claim(JwtRegisteredClaimNames.Sub, user.Email),
-                new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
-                new Claim(ClaimTypes.Name, user.Email),
-                
+                new Claim(ClaimTypes.NameIdentifier, user.Email),   
+                new Claim(ClaimTypes.Name, user.UserName)
             };
 
             var tokenDescriptor = new SecurityTokenDescriptor
@@ -93,8 +94,17 @@ namespace Authentication_Service.Controllers
                 Audience = _configuration["Jwt:Audience"],
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
             };
+
             var token = tokenHandler.CreateToken(tokenDescriptor);
             var tokenString = tokenHandler.WriteToken(token);
+
+            await _publish.Publish(new LoginEvent
+            {
+                Id = user.Id,
+                Email = user.Email,
+                UserName = user.UserName,
+                SourceService = "Login"
+            });
 
             return Ok(new
             {

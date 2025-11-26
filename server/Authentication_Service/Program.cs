@@ -1,9 +1,10 @@
-
+using MassTransit;
 using Authentication_Service.Data;
 using Authentication_Service.Extension;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using Authentication_Service.Services;
 using System;
 using System.Text;
 
@@ -49,6 +50,26 @@ namespace Authentication_Service
                 };
             });
             builder.Services.AddAuthorization();
+
+            builder.Services.AddMassTransit(x =>
+            {
+                x.AddConsumer<ReceiveLoginService>(); 
+
+                x.UsingRabbitMq((context, cfg) =>
+                {
+                    cfg.Host("fuji.lmq.cloudamqp.com", "ioitvvgk", h =>
+                    {
+                        h.Username("ioitvvgk");
+                        h.Password("VzJoVb6iTESpEXfATJ5oNh9PcjVw1Vmu");
+                    });
+
+                    cfg.ReceiveEndpoint("login-event", e =>
+                    {
+                        e.ConfigureConsumer<ReceiveLoginService>(context);
+                    });
+                });
+            });
+
             builder.Services.AddScoped<Services.EmailService>();
             builder.Services.AddCors(options =>
             {
